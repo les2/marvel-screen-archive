@@ -3,8 +3,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild, computed, injec
 import { FormsModule } from '@angular/forms';
 import type { Character, Collection, Phase, Saga, TitleRecord, Universe } from './models';
 import { CatalogDataService } from './catalog-data.service';
-
-type SortMode = 'release' | 'timeline' | 'title';
+import { compatiblePhaseSelection, filterAndSortTitles, phasesForSaga, type CatalogSortMode } from './catalog-query';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +26,7 @@ export class AppComponent implements OnInit {
   readonly selectedSaga = signal('all');
   readonly selectedPhase = signal('all');
   readonly selectedType = signal('all');
-  readonly sortMode = signal<SortMode>('release');
+  readonly sortMode = signal<CatalogSortMode>('release');
   readonly selectedTitle = signal<TitleRecord | null>(null);
   readonly loading = signal(true);
   readonly canInstall = signal(false);
@@ -36,33 +35,10 @@ export class AppComponent implements OnInit {
   readonly creditSceneCount = computed(() => this.titles().reduce((sum, title) => sum + title.creditScenes.reduce((n, scene) => n + scene.count, 0), 0));
   readonly currentPhase = computed(() => this.phases().find((phase) => phase.status === 'current'));
   readonly currentSaga = computed(() => this.sagas().find((saga) => saga.id === this.currentPhase()?.sagaId));
-  readonly visiblePhases = computed(() => this.selectedSaga() === 'all' ? this.phases() : this.phases().filter((phase) => phase.sagaId === this.selectedSaga()));
-  readonly filteredTitles = computed(() => {
-    const query = this.normalize(this.query());
-    const universe = this.selectedUniverse();
-    const saga = this.selectedSaga();
-    const phase = this.selectedPhase();
-    const type = this.selectedType();
-    const characters = new Map(this.characters().map((character) => [character.id, character]));
-    const records = this.titles().filter((title) => {
-      if (universe !== 'all' && !title.universeIds.includes(universe)) return false;
-      if (saga !== 'all' && !title.sagaIds.includes(saga)) return false;
-      if (phase !== 'all' && title.phaseId !== phase) return false;
-      if (type !== 'all' && title.mediaType !== type) return false;
-      if (!query) return true;
-      const people = title.appearances.flatMap((appearance) => {
-        const character = characters.get(appearance.characterId);
-        return character ? [character.name, ...character.aliases] : [];
-      });
-      const haystack = this.normalize([title.title, title.synopsis, title.timelineYear, ...(title.searchAliases ?? []), ...people].join(' '));
-      return query.split(' ').every((term) => haystack.includes(term));
-    });
-    return [...records].sort((a, b) => {
-      if (this.sortMode() === 'title') return a.title.localeCompare(b.title);
-      if (this.sortMode() === 'timeline') return (a.timelineOrder ?? 9999) - (b.timelineOrder ?? 9999);
-      return a.releaseDate.localeCompare(b.releaseDate);
-    });
-  });
+  readonly visiblePhases = computed(() => phasesForSaga(this.phases(), this.selectedSaga()));
+  readonly filteredTitles = computed(() => filterAndSortTitles(this.titles(), this.characters(), {
+    query:this.query(), universeId:this.selectedUniverse(), sagaId:this.selectedSaga(), phaseId:this.selectedPhase(), mediaType:this.selectedType(), sortMode:this.sortMode()
+  }));
 
   async ngOnInit(): Promise<void> {
     try {
@@ -83,12 +59,11 @@ export class AppComponent implements OnInit {
   sagaFor(id?: string): Saga | undefined { return this.sagas().find((saga) => saga.id === id); }
   phaseFor(id?: string): Phase | undefined { return this.phases().find((phase) => phase.id === id); }
   creditSceneCountFor(title: TitleRecord): number { return title.creditScenes.reduce((sum, scene) => sum + scene.count, 0); }
-  setSort(value: string): void { this.sortMode.set(value as SortMode); }
+  setSort(value: string): void { this.sortMode.set(value as CatalogSortMode); }
   setQuery(value: string): void { this.query.set(value); }
-  setSaga(value: string): void { this.selectedSaga.set(value); if (this.selectedPhase() !== 'all' && this.phaseFor(this.selectedPhase())?.sagaId !== value) this.selectedPhase.set('all'); }
+  setSaga(value: string): void { this.selectedSaga.set(value); this.selectedPhase.set(compatiblePhaseSelection(this.phases(), this.selectedPhase(), value)); }
   openTitle(title: TitleRecord): void { this.selectedTitle.set(title); document.body.classList.add('drawer-open'); }
   closeTitle(): void { this.selectedTitle.set(null); document.body.classList.remove('drawer-open'); }
   clearFilters(): void { this.query.set(''); this.selectedUniverse.set('all'); this.selectedSaga.set('all'); this.selectedPhase.set('all'); this.selectedType.set('all'); }
   formatDate(date: string): string { return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
-  private normalize(value = ''): string { return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
 }

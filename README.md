@@ -23,7 +23,9 @@ Production builds run Angular's library linker before bundling, emit content-fin
 
 ## Local development
 
-Use Node 22.22.3 or newer, install dependencies, then run `npm run dev`. A production bundle is created with `npm run build`.
+Use Node 22.22.3 or newer (the workflow uses Node 24), install dependencies, then run `npm run dev`. Run the core unit suite with `npm test`; a production bundle is created with `npm run build`.
+
+The public repository runs both tests and the production build in GitHub Actions for every push and pull request. It uses one standard Ubuntu runner, which is free for public repositories, and does not upload paid artifacts.
 
 ## Data maintenance
 
