@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const path = new URL('../public/data/titles.json', import.meta.url);
 const detailed = JSON.parse(readFileSync(path, 'utf8'));
 const collections = JSON.parse(readFileSync(new URL('../public/data/collections.json', import.meta.url), 'utf8'));
+const universes = JSON.parse(readFileSync(new URL('../public/data/universes.json', import.meta.url), 'utf8'));
 const rows = [
   // MCU films and specials
   ['thor-dark-world','Thor: The Dark World','film','2013-11-08','mcu-616'],['captain-america-winter-soldier','Captain America: The Winter Soldier','film','2014-04-04','mcu-616'],
@@ -118,6 +119,71 @@ for (const [arcId,titleIds] of Object.entries(arcMembership)) {
 for (const id of ['avengers-endgame','avengers-doomsday','avengers-secret-wars']) {
   const title = titleById.get(id);
   if (title) title.isSagaCulmination = true;
+}
+
+const universeById = new Map(universes.map((universe) => [universe.id,universe]));
+const focusRules = [
+  [/spider-man|spider-woman|spidey/i,'web-slinging heroes balancing extraordinary responsibility with everyday life'],
+  [/x-men|wolverine|logan|mutant|legion|the gifted|generation x|dark phoenix/i,'mutants confronting prejudice, identity, and threats to coexistence'],
+  [/fantastic four|fant4stic/i,'Marvel’s first family exploring the unknown and facing cosmic danger'],
+  [/avengers/i,'Marvel heroes assembling against a threat too large for any one champion'],
+  [/iron man/i,'armored technology, invention, and the consequences of power'],
+  [/captain america/i,'the legacy of the super-soldier ideal across changing eras'],
+  [/guardians/i,'a found family of cosmic outlaws protecting the galaxy'],
+  [/doctor strange|dr\. strange/i,'the mystic arts and dangers beyond ordinary reality'],
+  [/thor/i,'Asgardian myth, family, and battles spanning the Nine Realms'],
+  [/hulk/i,'gamma-powered transformations and the struggle to control immense strength'],
+  [/ant-man|wasp/i,'size-changing heroes using science, stealth, and unlikely teamwork'],
+  [/black panther|wakanda/i,'Wakanda, its protectors, and the responsibilities of leadership'],
+  [/daredevil|defenders/i,'street-level heroes defending New York from crime and conspiracy'],
+  [/punisher/i,'a relentless vigilante waging a personal war on violent crime'],
+  [/blade/i,'a vampire hunter moving through Marvel’s supernatural underworld'],
+  [/ghost rider/i,'a cursed antihero channeling supernatural vengeance'],
+  [/deadpool/i,'a rule-breaking mercenary whose violence comes with irreverent humor'],
+  [/venom/i,'the volatile bond between a human host and an alien symbiote'],
+  [/morbius/i,'a scientist whose search for a cure creates a vampiric transformation'],
+  [/kraven/i,'a formidable hunter pursuing power, prey, and a dangerous legacy'],
+  [/madame web/i,'clairvoyance, fate, and interconnected heroes in the Spider-Man multiverse'],
+  [/shang-chi/i,'martial arts, family secrets, and the legacy of the Ten Rings'],
+  [/eternals/i,'immortal protectors reckoning with humanity and their cosmic purpose'],
+  [/hawkeye/i,'expert archers confronting unfinished business and questions of legacy'],
+  [/moon knight/i,'a fractured hero drawn into an ancient supernatural conflict'],
+  [/captain marvel|ms\. marvel|the marvels/i,'cosmic power, heroic identity, and interconnected legacies'],
+  [/she-hulk/i,'a super-powered attorney navigating law, celebrity, and heroics'],
+  [/werewolf/i,'monsters and hunters in the darker supernatural corners of Marvel'],
+  [/loki/i,'the God of Mischief navigating identity, time, and branching realities'],
+  [/what if/i,'alternate choices that reshape familiar Marvel histories'],
+  [/agatha|wandavision/i,'witchcraft, grief, identity, and reality-altering power'],
+  [/echo/i,'a determined fighter confronting family history and a criminal legacy'],
+  [/secret invasion/i,'a hidden infiltration that makes trust a dangerous gamble'],
+  [/thunderbolts/i,'an uneasy team of antiheroes pushed into a high-risk mission'],
+  [/ironheart/i,'a gifted young inventor building an armored legacy of her own'],
+  [/wonder man/i,'superhuman ambition colliding with the machinery of show business'],
+  [/vision/i,'an artificial hero searching for identity, memory, and purpose'],
+  [/zombies/i,'an alternate Marvel reality overrun by super-powered undead'],
+  [/big hero 6/i,'young innovators turning friendship and technology into heroism'],
+  [/howard the duck/i,'an unlikely visitor from another world stranded in human chaos'],
+  [/inhumans/i,'a hidden superhuman society divided by power, duty, and family'],
+  [/runaways/i,'teenagers discovering that their parents’ secrets demand rebellion'],
+  [/cloak.*dagger/i,'two linked young heroes confronting trauma and corruption'],
+  [/helstrom/i,'siblings investigating a legacy rooted in horror and the occult'],
+  [/m\.o\.d\.o\.k/i,'a self-important supervillain struggling to control work and family'],
+  [/hit-monkey/i,'an unlikely assassin cutting a violent path through the criminal underworld'],
+  [/moon girl/i,'a brilliant young inventor adventuring alongside a giant dinosaur'],
+  [/silver surfer/i,'a cosmic wanderer confronting sacrifice and planetary danger']
+];
+const formatLabels = {film:'film',series:'series',special:'television special',short:'short-form series'};
+function generatedDescription(title) {
+  const focus = focusRules.find(([pattern]) => pattern.test(title.title))?.[1] ?? 'Marvel characters facing conflicts shaped by power, identity, and responsibility';
+  const format = formatLabels[title.mediaType] ?? 'screen story';
+  const release = title.status === 'announced' ? `an announced ${format}` : `a ${title.releaseDate.slice(0,4)} ${format}`;
+  const universe = universeById.get(title.universeIds[0])?.name ?? 'Marvel screen archive';
+  return `${title.title} is ${release} centered on ${focus}. It is cataloged within the ${universe} continuity.`;
+}
+for (const title of all) {
+  const placeholder = /Detailed editorial metadata is queued for verification\./.test(title.synopsis);
+  title.editorialDescription = placeholder ? generatedDescription(title) : title.synopsis;
+  title.descriptionSource = 'ai-assisted';
 }
 const mcuTimeline = [
   'captain-america-first-avenger','captain-marvel','iron-man','iron-man-2','thor','incredible-hulk','avengers','thor-dark-world','iron-man-3','captain-america-winter-soldier','guardians-galaxy','guardians-galaxy-2','i-am-groot-s1','i-am-groot-s2','avengers-age-ultron','ant-man','captain-america-civil-war','black-widow','black-panther','spider-man-homecoming','doctor-strange','thor-ragnarok','ant-man-wasp','avengers-infinity-war','avengers-endgame','loki-s1','what-if-s1','wandavision','shang-chi','falcon-winter-soldier','spider-man-far-from-home','eternals','spider-man-no-way-home','doctor-strange-multiverse','hawkeye','moon-knight','black-panther-wakanda-forever','echo','she-hulk','ms-marvel','thor-love-thunder','ironheart','werewolf-by-night','guardians-holiday-special','ant-man-quantumania','guardians-galaxy-3','secret-invasion','the-marvels','deadpool-wolverine','agatha-all-along','captain-america-brave-new-world','daredevil-born-again-s1','thunderbolts','fantastic-four-first-steps'

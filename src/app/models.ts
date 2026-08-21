@@ -9,6 +9,8 @@ export interface TitleRecord {
   previousByRelease?:EntityRef; nextByRelease?:EntityRef; previousInTimeline?:EntityRef; nextInTimeline?:EntityRef;
   appearances:Array<{characterId:string;role:RoleType}>; creditScenes:CreditScene[]; links:ExternalLink[]; searchAliases?:string[];
   dataQuality?: 'verified-core' | 'catalog';
+  editorialDescription?: string;
+  descriptionSource?: 'ai-assisted';
   collectionNavigation?: Array<{collectionId:string;position:number;previousId?:string;nextId?:string}>;
   phaseId?: string;
   arcIds?: string[];
@@ -16,6 +18,7 @@ export interface TitleRecord {
 }
 export interface Universe { id:string; name:string; shortName:string; color:string; description:string; parentUniverseId?:string; continuityType:'primary'|'branch'|'reboot'|'adjacent'; }
 export interface Character { id:string; name:string; aliases:string[]; officialUrl?:string; wikipediaUrl?:string; artworkUrl?:string; }
-export interface Collection { id:string; name:string; kind:'trilogy'|'series'|'saga'|'team'|'studio-era'; titleIds:string[]; }
+export interface Collection { id:string; name:string; kind:'trilogy'|'series'|'saga'|'team'|'studio-era'; titleIds:string[]; description?:string; }
 export interface Saga { id:string; name:string; universeId:string; phases?:number[]; description:string; }
 export interface Phase { id:string; name:string; number:number; sagaId:string; status:'completed'|'current'|'announced'; startDate:string; endDate?:string; description:string; }
+export interface StoryArc { id:string; name:string; sagaId:string; description:string; }

@@ -40,13 +40,21 @@
           <input #searchInput type="search" [ngModel]="query()" (ngModelChange)="setQuery($event)" placeholder="Search title, character, alias…" autocomplete="off">
           <kbd>⌘ K</kbd>
         </label>
-        <div class="filter-row">
-          <label><span>Universe</span><select [ngModel]="selectedUniverse()" (ngModelChange)="selectedUniverse.set($event)"><option value="all">All universes</option><option *ngFor="let universe of universes()" [value]="universe.id">{{ universe.shortName }}</option></select></label>
-          <label><span>Saga</span><select [ngModel]="selectedSaga()" (ngModelChange)="setSaga($event)"><option value="all">All sagas</option><option *ngFor="let saga of sagas()" [value]="saga.id">{{ saga.name }}</option></select></label>
-          <label><span>Phase</span><select [ngModel]="selectedPhase()" (ngModelChange)="selectedPhase.set($event)"><option value="all">All phases</option><option *ngFor="let phase of visiblePhases()" [value]="phase.id">{{ phase.name }}</option></select></label>
-          <label><span>Format</span><select [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)"><option value="all">All formats</option><option value="film">Films</option><option value="series">Series</option><option value="special">Specials</option><option value="short">Shorts</option></select></label>
-          <label><span>Order</span><select [ngModel]="sortMode()" (ngModelChange)="setSort($event)"><option value="release">Release date</option><option value="timeline">Universe timeline</option><option value="title">Title A–Z</option></select></label>
+        <div class="filter-row hierarchy-filters">
+          <label><span>Universe</span><select [ngModel]="selectedUniverse()" (ngModelChange)="setUniverse($event)"><option value="all">All universes</option><option *ngFor="let universe of universes()" [value]="universe.id">{{ universe.shortName }}</option></select></label>
+          <label><span>Saga</span><select [ngModel]="selectedSaga()" (ngModelChange)="setSaga($event)"><option value="all">All applicable sagas</option><option *ngFor="let saga of sagas()" [value]="saga.id" [disabled]="!sagaAvailable(saga.id)">{{ saga.name }}{{ sagaAvailable(saga.id) ? '' : ' — unavailable' }}</option></select></label>
+          <label><span>Phase</span><select [ngModel]="selectedPhase()" (ngModelChange)="setPhase($event)"><option value="all">All applicable phases</option><option *ngFor="let phase of phases()" [value]="phase.id" [disabled]="!phaseAvailable(phase.id)">{{ phase.name }}{{ phaseAvailable(phase.id) ? '' : ' — unavailable' }}</option></select></label>
         </div>
+        <div class="filter-context" *ngIf="selectedUniverseInfo() || selectedSagaInfo() || selectedPhaseInfo()">
+          <article *ngIf="selectedUniverseInfo() as universe"><span>Universe</span><strong>{{ universe.name }}</strong><p>{{ universe.description }}</p></article>
+          <article *ngIf="selectedSagaInfo() as saga"><span>Saga</span><strong>{{ saga.name }}</strong><p>{{ saga.description }}</p></article>
+          <article *ngIf="selectedPhaseInfo() as phase"><span>Phase</span><strong>{{ phase.name }}</strong><p>{{ phase.description }}</p></article>
+        </div>
+        <div class="control-row">
+          <fieldset class="segmented-control"><legend>Format</legend><button type="button" *ngFor="let option of [{id:'all',label:'All'},{id:'film',label:'Films'},{id:'series',label:'Series'},{id:'special',label:'Specials'},{id:'short',label:'Shorts'}]" [class.active]="selectedType() === option.id" [attr.aria-pressed]="selectedType() === option.id" (click)="selectedType.set(option.id)">{{ option.label }}</button></fieldset>
+          <fieldset class="segmented-control order-control"><legend>Order</legend><button type="button" *ngFor="let option of [{id:'release',label:'Release'},{id:'timeline',label:'Timeline'},{id:'title',label:'A–Z'}]" [class.active]="sortMode() === option.id" [attr.aria-pressed]="sortMode() === option.id" (click)="setSort(option.id)">{{ option.label }}</button></fieldset>
+        </div>
+        <div class="active-filters" *ngIf="hasCustomState()"><span>Active</span><button *ngIf="query()" (click)="clearFilter('query')">Search: {{ query() }} ×</button><button *ngIf="selectedUniverseInfo() as universe" (click)="clearFilter('universe')">{{ universe.shortName }} ×</button><button *ngIf="selectedSagaInfo() as saga" (click)="clearFilter('saga')">{{ saga.name }} ×</button><button *ngIf="selectedPhaseInfo() as phase" (click)="clearFilter('phase')">{{ phase.name }} ×</button><button *ngIf="selectedType() !== 'all'" (click)="clearFilter('format')">{{ selectedType() }} ×</button><button *ngIf="sortMode() !== 'release'" (click)="clearFilter('order')">{{ sortMode() }} order ×</button><button class="clear-all" (click)="clearFilters()">Clear all</button></div>
       </div>
 
       <div class="loading" *ngIf="loading()">Opening the archive…</div>
@@ -56,7 +64,7 @@
         <button class="title-card" *ngFor="let title of filteredTitles(); let index = index" (click)="openTitle(title)" [attr.aria-label]="'Open details for ' + title.title">
           <div class="card-top"><span class="index">{{ (index + 1).toString().padStart(2, '0') }}</span><span class="universe-pill" [style.--pill]="universeFor(title)?.color">{{ universeFor(title)?.shortName }}</span></div>
           <div class="card-symbol" aria-hidden="true"><span>{{ title.title.charAt(0) }}</span><i></i></div>
-          <div class="card-copy"><span class="type">{{ title.mediaType }} · {{ title.releaseDate.slice(0, 4) }}<ng-container *ngIf="phaseFor(title.phaseId) as phase"> · {{ phase.name }}</ng-container></span><h3>{{ title.title }}</h3><p>{{ title.synopsis }}</p></div>
+          <div class="card-copy"><span class="type">{{ title.mediaType }} · {{ title.releaseDate.slice(0, 4) }}<ng-container *ngIf="phaseFor(title.phaseId) as phase"> · {{ phase.name }}</ng-container></span><h3>{{ title.title }}</h3><p>{{ title.editorialDescription || title.synopsis }}</p></div>
           <div class="card-meta"><span *ngIf="title.timelineYear">Timeline {{ title.timelineYear }}</span><span>{{ title.creditScenes.length ? creditSceneCountFor(title) + ' credit scene' + (creditSceneCountFor(title) === 1 ? '' : 's') : 'No credit scenes' }}</span><b>↗</b></div>
         </button>
       </div>
@@ -79,11 +87,12 @@
 <aside class="drawer" [class.open]="selectedTitle()" [attr.aria-hidden]="!selectedTitle()" aria-label="Title details">
   <ng-container *ngIf="selectedTitle() as title">
     <div class="drawer-head"><span>{{ title.mediaType }} / {{ title.releaseDate.slice(0, 4) }}<ng-container *ngIf="phaseFor(title.phaseId) as phase"> / {{ phase.name }}</ng-container></span><button (click)="closeTitle()" aria-label="Close details">×</button></div>
-    <div class="drawer-hero"><div class="drawer-labels"><span class="drawer-index">{{ title.releaseOrder.toString().padStart(2, '0') }}</span><span>{{ title.dataQuality === 'verified-core' ? 'Core detail verified' : 'Catalog record' }}</span></div><h2>{{ title.title }}</h2><p>{{ title.synopsis }}</p></div>
+    <div class="drawer-hero"><div class="drawer-labels"><span class="drawer-index">{{ title.releaseOrder.toString().padStart(2, '0') }}</span><span>{{ title.descriptionSource === 'ai-assisted' ? 'AI-assisted editorial summary' : (title.dataQuality === 'verified-core' ? 'Core detail verified' : 'Catalog record') }}</span></div><h2>{{ title.title }}</h2><p>{{ title.editorialDescription || title.synopsis }}</p></div>
     <div class="detail-ranks"><div><span>Release</span><strong>#{{ title.releaseOrder }}</strong></div><div><span>Timeline</span><strong>{{ title.timelineOrder ? '#' + title.timelineOrder : '—' }}</strong></div><div><span>Phase</span><strong>{{ phaseFor(title.phaseId)?.name || '—' }}</strong></div><div><span>Saga</span><strong>{{ sagaFor(title.sagaIds[0])?.name || '—' }}</strong></div></div>
     <section class="drawer-section" *ngIf="title.appearances.length"><h3>Characters</h3><div class="appearance" *ngFor="let item of title.appearances"><div><strong>{{ characterFor(item.characterId)?.name || item.characterId }}</strong><span>{{ characterFor(item.characterId)?.aliases?.join(' · ') }}</span></div><em>{{ item.role }}</em></div></section>
     <section class="drawer-section"><h3>After the credits</h3><div class="credit-scene" *ngFor="let scene of title.creditScenes"><span>{{ scene.position }}</span><p>{{ scene.summary }}</p></div><p class="muted" *ngIf="!title.creditScenes.length">No mid- or post-credit scene recorded.</p></section>
-    <section class="drawer-section" *ngIf="title.collectionIds.length"><h3>Collections</h3><div class="chips"><span *ngFor="let id of title.collectionIds">{{ collectionFor(id)?.name || id }}</span></div></section>
+    <section class="drawer-section" *ngIf="title.collectionIds.length"><h3>Collections</h3><div class="collection-list"><article *ngFor="let id of title.collectionIds"><strong>{{ collectionFor(id)?.name || id }}</strong><span>{{ collectionFor(id)?.kind }}</span><p *ngIf="collectionFor(id)?.description as description">{{ description }}</p></article></div></section>
+    <section class="drawer-section" *ngIf="title.arcIds?.length"><h3>Story arcs</h3><div class="collection-list"><article *ngFor="let id of title.arcIds"><strong>{{ storyArcFor(id)?.name || id }}</strong><span>Story arc</span><p *ngIf="storyArcFor(id)?.description as description">{{ description }}</p></article></div></section>
     <section class="drawer-section"><h3>Watch & verify</h3><a class="external-link" *ngFor="let link of title.links" [href]="link.url" target="_blank" rel="noopener"><span>{{ link.provider }}<small *ngIf="link.canonical">Canonical</small></span><b>↗</b></a></section>
   </ng-container>
 </aside>

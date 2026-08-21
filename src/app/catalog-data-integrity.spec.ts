@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import charactersJson from '../../public/data/characters.json';
+import collectionsJson from '../../public/data/collections.json';
 import phasesJson from '../../public/data/phases.json';
+import storyArcsJson from '../../public/data/story-arcs.json';
 import titlesJson from '../../public/data/titles.json';
 import type { Character, Phase, TitleRecord } from './models';
 
@@ -51,5 +53,18 @@ describe('catalog data integrity', () => {
   it('keeps Disney+ canonical for MCU records', () => {
     const mcuTitles = titles.filter(({universeIds}) => universeIds.includes('mcu-616'));
     expect(mcuTitles.every(({links}) => links.some(({provider,kind,canonical}) => provider === 'Disney+' && kind === 'stream' && canonical))).toBe(true);
+  });
+
+  it('provides a distinct AI-assisted editorial description for every title', () => {
+    const descriptions = titles.map(({editorialDescription}) => editorialDescription ?? '');
+    expect(descriptions.every((description) => description.length >= 40)).toBe(true);
+    expect(new Set(descriptions).size).toBe(titles.length);
+    expect(titles.every(({descriptionSource}) => descriptionSource === 'ai-assisted')).toBe(true);
+    expect(descriptions.some((description) => /details are being expanded/i.test(description))).toBe(false);
+  });
+
+  it('explains every named collection', () => {
+    expect(collectionsJson.every(({description}) => description.length >= 20)).toBe(true);
+    expect(storyArcsJson.every(({description}) => description.length >= 20)).toBe(true);
   });
 });

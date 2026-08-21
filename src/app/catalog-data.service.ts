@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import type { Character, Collection, Phase, Saga, TitleRecord, Universe } from './models';
+import type { Character, Collection, Phase, Saga, StoryArc, TitleRecord, Universe } from './models';
 
-export interface CatalogBundle { titles:TitleRecord[]; universes:Universe[]; characters:Character[]; collections:Collection[]; sagas:Saga[]; phases:Phase[]; }
+export interface CatalogBundle { titles:TitleRecord[]; universes:Universe[]; characters:Character[]; collections:Collection[]; sagas:Saga[]; phases:Phase[]; storyArcs:StoryArc[]; }
 
 @Injectable({ providedIn: 'root' })
 export class CatalogDataService {
@@ -13,15 +13,16 @@ export class CatalogDataService {
 
   async load(): Promise<CatalogBundle> {
     try {
-      const [titles, universes, characters, collections, sagas, phases] = await Promise.all([
+      const [titles, universes, characters, collections, sagas, phases, storyArcs] = await Promise.all([
         firstValueFrom(this.http.get<TitleRecord[]>('/data/titles.json')),
         firstValueFrom(this.http.get<Universe[]>('/data/universes.json')),
         firstValueFrom(this.http.get<Character[]>('/data/characters.json')),
         firstValueFrom(this.http.get<Collection[]>('/data/collections.json')),
         firstValueFrom(this.http.get<Saga[]>('/data/sagas.json')),
-        firstValueFrom(this.http.get<Phase[]>('/data/phases.json'))
+        firstValueFrom(this.http.get<Phase[]>('/data/phases.json')),
+        firstValueFrom(this.http.get<StoryArc[]>('/data/story-arcs.json'))
       ]);
-      const bundle = { titles, universes, characters, collections, sagas, phases };
+      const bundle = { titles, universes, characters, collections, sagas, phases, storyArcs };
       await this.writeCache(bundle);
       return bundle;
     } catch (error) {
@@ -56,7 +57,7 @@ export class CatalogDataService {
   private async readCache(): Promise<CatalogBundle | null> {
     if (!('indexedDB' in window)) return null;
     const db = await this.openDb();
-    const keys: Array<keyof CatalogBundle> = ['titles','universes','characters','collections','sagas','phases'];
+    const keys: Array<keyof CatalogBundle> = ['titles','universes','characters','collections','sagas','phases','storyArcs'];
     const values = await new Promise<unknown[]>((resolve, reject) => {
       const tx = db.transaction(this.storeName, 'readonly');
       const store = tx.objectStore(this.storeName);

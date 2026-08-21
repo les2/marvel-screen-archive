@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Character, Phase, TitleRecord } from './models';
-import { compatiblePhaseSelection, filterAndSortTitles, normalizeSearch, phasesForSaga, type CatalogQueryState } from './catalog-query';
+import { availablePhaseIds, availableSagaIds, compatiblePhaseSelection, filterAndSortTitles, normalizeSearch, phasesForSaga, type CatalogQueryState } from './catalog-query';
 
 const characters: Character[] = [
   {id:'tony-stark',name:'Tony Stark',aliases:['Iron Man']},
@@ -61,5 +61,12 @@ describe('saga and phase selection', () => {
     expect(compatiblePhaseSelection(phases,'mcu-phase-1','multiverse-saga')).toBe('all');
     expect(compatiblePhaseSelection(phases,'mcu-phase-6','multiverse-saga')).toBe('mcu-phase-6');
     expect(compatiblePhaseSelection(phases,'mcu-phase-6','all')).toBe('all');
+  });
+
+  it('derives available sagas and phases from the selected hierarchy', () => {
+    expect([...availableSagaIds(titles,'mcu-616')].sort()).toEqual(['infinity-saga','multiverse-saga']);
+    expect([...availablePhaseIds(titles,'mcu-616','infinity-saga')].sort()).toEqual(['mcu-phase-1','mcu-phase-3']);
+    expect([...availablePhaseIds(titles,'mcu-616','multiverse-saga')].sort()).toEqual(['mcu-phase-4','mcu-phase-6']);
+    expect(availableSagaIds(titles,'spider-verse')).toEqual(new Set());
   });
 });

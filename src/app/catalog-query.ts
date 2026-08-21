@@ -28,7 +28,7 @@ export function filterAndSortTitles(titles: TitleRecord[], characters: Character
       const character = characterById.get(appearance.characterId);
       return character ? [character.name, ...character.aliases] : [];
     });
-    const haystack = normalizeSearch([title.title, title.synopsis, title.timelineYear, ...(title.searchAliases ?? []), ...characterTerms].join(' '));
+    const haystack = normalizeSearch([title.title, title.synopsis, title.editorialDescription, title.timelineYear, ...(title.searchAliases ?? []), ...characterTerms].join(' '));
     return query.split(' ').every((term) => haystack.includes(term));
   });
 
@@ -46,4 +46,12 @@ export function phasesForSaga(phases: Phase[], sagaId: string): Phase[] {
 export function compatiblePhaseSelection(phases: Phase[], phaseId: string, sagaId: string): string {
   if (phaseId === 'all') return phaseId;
   return sagaId !== 'all' && phases.some((phase) => phase.id === phaseId && phase.sagaId === sagaId) ? phaseId : 'all';
+}
+
+export function availableSagaIds(titles: TitleRecord[], universeId: string): Set<string> {
+  return new Set(titles.filter((title) => universeId === 'all' || title.universeIds.includes(universeId)).flatMap((title) => title.sagaIds));
+}
+
+export function availablePhaseIds(titles: TitleRecord[], universeId: string, sagaId: string): Set<string> {
+  return new Set(titles.filter((title) => (universeId === 'all' || title.universeIds.includes(universeId)) && (sagaId === 'all' || title.sagaIds.includes(sagaId))).flatMap((title) => title.phaseId ? [title.phaseId] : []));
 }

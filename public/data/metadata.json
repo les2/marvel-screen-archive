@@ -1,5 +1,5 @@
 {
-  "$schema":"./schema/metadata.schema.json","dataset":"marvel-screen-archive","version":"0.2.0","schemaVersion":"1.1.0","updatedAt":"2026-08-21T00:00:00Z",
+  "$schema":"./schema/metadata.schema.json","dataset":"marvel-screen-archive","version":"0.3.0","schemaVersion":"1.2.0","updatedAt":"2026-08-21T00:00:00Z",
   "license":"CC BY 4.0 for original metadata; linked assets remain property of their owners",
   "coverage":{"scope":"Marvel-derived feature films, live-action series, animated series and specials","records":"expanding","detailLevel":"mixed: verified core records plus catalog-level records"},
   "files":["titles.json","characters.json","universes.json","sagas.json","phases.json","story-arcs.json","collections.json","appearances.json","credit-scenes.json","sources.json"]

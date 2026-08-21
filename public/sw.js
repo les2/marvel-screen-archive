@@ -1,4 +1,4 @@
-const CACHE = 'marvel-archive-v0.3.0';
+const CACHE = 'marvel-archive-v0.4.0';
 const CORE = [
   '/index.html', '__MAIN_ASSET__', '__STYLE_ASSET__', '/manifest.webmanifest', '/favicon.svg', '/og.png',
   '/data/metadata.json', '/data/titles.json', '/data/characters.json', '/data/universes.json', '/data/sagas.json', '/data/phases.json', '/data/story-arcs.json',
