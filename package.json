@@ -4,7 +4,9 @@
   "private": false,
   "description": "A fast, offline-first Marvel screen universe explorer and open JSON dataset.",
   "type": "module",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "ng serve --host 127.0.0.1",
     "build": "ngc -p tsconfig.app.json && node scripts/build-static.mjs && node scripts/prepare-sites-build.mjs",
@@ -27,6 +29,7 @@
     "@angular/build": "^22.1.0",
     "@angular/cli": "^22.1.0",
     "@angular/compiler-cli": "^22.1.0",
+    "@babel/core": "^8.0.1",
     "@tailwindcss/postcss": "^4.2.1",
     "esbuild": "^0.28.2",
     "postcss": "^8.5.6",

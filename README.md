@@ -19,6 +19,8 @@ The MCU hierarchy is modeled explicitly as **Saga → Phase → Title**. The Inf
 
 Angular 22 standalone components, signals, strict TypeScript, Tailwind CSS 4, native IndexedDB, and an offline-first service worker. There is no application backend.
 
+Production builds run Angular's library linker before bundling, emit content-fingerprinted JavaScript and CSS, and use network-first navigation caching so a deployment cannot be shadowed by an obsolete application shell.
+
 ## Local development
 
 Use Node 22.22.3 or newer, install dependencies, then run `npm run dev`. A production bundle is created with `npm run build`.
