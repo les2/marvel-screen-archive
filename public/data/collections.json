@@ -1,0 +1,9 @@
+[
+  {"id":"infinity-saga","name":"The Infinity Saga","kind":"saga","titleIds":["iron-man","incredible-hulk","iron-man-2","thor","captain-america-first-avenger","avengers","iron-man-3","thor-dark-world","captain-america-winter-soldier","guardians-galaxy","avengers-age-ultron","ant-man","captain-america-civil-war","doctor-strange","guardians-galaxy-2","spider-man-homecoming","thor-ragnarok","black-panther","avengers-infinity-war","ant-man-wasp","captain-marvel","avengers-endgame","spider-man-far-from-home"]},
+  {"id":"iron-man-trilogy","name":"Iron Man Trilogy","kind":"trilogy","titleIds":["iron-man","iron-man-2","iron-man-3"]},
+  {"id":"captain-america-series","name":"Captain America Series","kind":"series","titleIds":["captain-america-first-avenger","captain-america-winter-soldier","captain-america-civil-war","captain-america-brave-new-world"]},
+  {"id":"avengers-series","name":"Avengers Series","kind":"series","titleIds":["avengers","avengers-age-ultron","avengers-infinity-war","avengers-endgame","avengers-doomsday","avengers-secret-wars"]},
+  {"id":"guardians-trilogy","name":"Guardians of the Galaxy Trilogy","kind":"trilogy","titleIds":["guardians-galaxy","guardians-galaxy-2","guardians-galaxy-3"]},
+  {"id":"raimi-trilogy","name":"Raimi Spider-Man Trilogy","kind":"trilogy","titleIds":["spider-man-2002","spider-man-2","spider-man-3"]},
+  {"id":"spider-verse-trilogy","name":"Spider-Verse Trilogy","kind":"trilogy","titleIds":["into-spider-verse","across-spider-verse","beyond-spider-verse"]}
+]

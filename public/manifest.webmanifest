@@ -1,0 +1,5 @@
+{
+  "name":"Marvel Archive","short_name":"M Archive","description":"An offline-first Marvel screen universe catalog.",
+  "theme_color":"#10100f","background_color":"#10100f","display":"standalone","scope":"/","start_url":"/",
+  "icons":[{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

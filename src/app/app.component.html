@@ -1,0 +1,82 @@
+<div class="app-shell">
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
+    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow"><span>Screen chronology / Vol. 01</span><span>Updated Aug 21, 2026</span></div>
+      <h1 id="hero-title">EVERY UNIVERSE.<br><em>ONE TIMELINE.</em></h1>
+      <div class="hero-bottom">
+        <p>Films, series, characters, continuities, and every scene after the credits—mapped into one fast, open archive.</p>
+        <a class="hero-cta" href="#catalog">Enter the archive <span>↓</span></a>
+      </div>
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-star star-one">✦</div><div class="hero-star star-two">✦</div>
+    </section>
+
+    <section class="metrics" aria-label="Dataset summary">
+      <div><strong>{{ releasedCount() }}</strong><span>titles indexed</span></div>
+      <div><strong>{{ universes().length }}</strong><span>screen universes</span></div>
+      <div><strong>{{ characters().length }}</strong><span>character records</span></div>
+      <div><strong>{{ creditSceneCount() }}</strong><span>credit scenes mapped</span></div>
+    </section>
+
+    <section class="catalog" id="catalog">
+      <div class="section-kicker"><span>01 / Explore</span><span>{{ filteredTitles().length }} results</span></div>
+      <div class="catalog-heading">
+        <h2>Find your<br><em>next chapter.</em></h2>
+        <p>Search a title, hero, alias, or story detail. Filter the multiverse, then switch between release order and in-universe chronology.</p>
+      </div>
+
+      <div class="search-panel">
+        <label class="search-box">
+          <span class="search-icon">⌕</span><span class="sr-only">Search the archive</span>
+          <input #searchInput type="search" [ngModel]="query()" (ngModelChange)="setQuery($event)" placeholder="Search title, character, alias…" autocomplete="off">
+          <kbd>⌘ K</kbd>
+        </label>
+        <div class="filter-row">
+          <label><span>Universe</span><select [ngModel]="selectedUniverse()" (ngModelChange)="selectedUniverse.set($event)"><option value="all">All universes</option><option *ngFor="let universe of universes()" [value]="universe.id">{{ universe.shortName }}</option></select></label>
+          <label><span>Format</span><select [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)"><option value="all">All formats</option><option value="film">Films</option><option value="series">Series</option><option value="special">Specials</option><option value="short">Shorts</option></select></label>
+          <label><span>Order</span><select [ngModel]="sortMode()" (ngModelChange)="setSort($event)"><option value="release">Release date</option><option value="timeline">Universe timeline</option><option value="title">Title A–Z</option></select></label>
+        </div>
+      </div>
+
+      <div class="loading" *ngIf="loading()">Opening the archive…</div>
+      <div class="empty" *ngIf="!loading() && filteredTitles().length === 0"><span>NO SIGNAL</span><p>No records match this branch of the timeline.</p><button (click)="clearFilters()">Reset filters</button></div>
+
+      <div class="title-grid" *ngIf="!loading() && filteredTitles().length">
+        <button class="title-card" *ngFor="let title of filteredTitles(); let index = index" (click)="openTitle(title)" [attr.aria-label]="'Open details for ' + title.title">
+          <div class="card-top"><span class="index">{{ (index + 1).toString().padStart(2, '0') }}</span><span class="universe-pill" [style.--pill]="universeFor(title)?.color">{{ universeFor(title)?.shortName }}</span></div>
+          <div class="card-symbol" aria-hidden="true"><span>{{ title.title.charAt(0) }}</span><i></i></div>
+          <div class="card-copy"><span class="type">{{ title.mediaType }} · {{ title.releaseDate.slice(0, 4) }}</span><h3>{{ title.title }}</h3><p>{{ title.synopsis }}</p></div>
+          <div class="card-meta"><span *ngIf="title.timelineYear">Timeline {{ title.timelineYear }}</span><span>{{ title.creditScenes.length ? creditSceneCountFor(title) + ' credit scene' + (creditSceneCountFor(title) === 1 ? '' : 's') : 'No credit scenes' }}</span><b>↗</b></div>
+        </button>
+      </div>
+    </section>
+
+    <section class="data-section" id="data">
+      <div class="section-kicker light"><span>02 / Built in the open</span><span>JSON · IndexedDB · PWA</span></div>
+      <div class="data-grid">
+        <div><h2>The archive<br>belongs to <em>everyone.</em></h2></div>
+        <div class="data-copy"><p>No account. No server. No tracking. The catalog ships as versioned JSON, caches for offline use, and is shaped for contribution.</p><a href="/data/metadata.json" target="_blank">Inspect dataset manifest <span>↗</span></a></div>
+      </div>
+      <div class="schema-strip"><span>titles.json</span><span>characters.json</span><span>universes.json</span><span>collections.json</span><span>sources.json</span></div>
+    </section>
+  </main>
+
+  <footer><span>Marvel Archive / 2026</span><p>An independent reference project. Marvel names and marks belong to their respective owners.</p><a href="#top">Back to top ↑</a></footer>
+</div>
+
+<div class="drawer-backdrop" *ngIf="selectedTitle()" (click)="closeTitle()"></div>
+<aside class="drawer" [class.open]="selectedTitle()" [attr.aria-hidden]="!selectedTitle()" aria-label="Title details">
+  <ng-container *ngIf="selectedTitle() as title">
+    <div class="drawer-head"><span>{{ title.mediaType }} / {{ title.releaseDate.slice(0, 4) }}</span><button (click)="closeTitle()" aria-label="Close details">×</button></div>
+    <div class="drawer-hero"><div class="drawer-labels"><span class="drawer-index">{{ title.releaseOrder.toString().padStart(2, '0') }}</span><span>{{ title.dataQuality === 'verified-core' ? 'Core detail verified' : 'Catalog record' }}</span></div><h2>{{ title.title }}</h2><p>{{ title.synopsis }}</p></div>
+    <div class="detail-ranks"><div><span>Release</span><strong>#{{ title.releaseOrder }}</strong></div><div><span>Timeline</span><strong>{{ title.timelineOrder ? '#' + title.timelineOrder : '—' }}</strong></div><div><span>Era</span><strong>{{ title.timelineYear || 'Unknown' }}</strong></div></div>
+    <section class="drawer-section" *ngIf="title.appearances.length"><h3>Characters</h3><div class="appearance" *ngFor="let item of title.appearances"><div><strong>{{ characterFor(item.characterId)?.name || item.characterId }}</strong><span>{{ characterFor(item.characterId)?.aliases?.join(' · ') }}</span></div><em>{{ item.role }}</em></div></section>
+    <section class="drawer-section"><h3>After the credits</h3><div class="credit-scene" *ngFor="let scene of title.creditScenes"><span>{{ scene.position }}</span><p>{{ scene.summary }}</p></div><p class="muted" *ngIf="!title.creditScenes.length">No mid- or post-credit scene recorded.</p></section>
+    <section class="drawer-section" *ngIf="title.collectionIds.length"><h3>Collections</h3><div class="chips"><span *ngFor="let id of title.collectionIds">{{ collectionFor(id)?.name || id }}</span></div></section>
+    <section class="drawer-section"><h3>Watch & verify</h3><a class="external-link" *ngFor="let link of title.links" [href]="link.url" target="_blank" rel="noopener"><span>{{ link.provider }}<small *ngIf="link.canonical">Canonical</small></span><b>↗</b></a></section>
+  </ng-container>
+</aside>

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "iron-man:tony-stark:0",
+    "titleId": "iron-man",
+    "characterId": "tony-stark",
+    "role": "lead"
+  },
+  {
+    "id": "incredible-hulk:bruce-banner:0",
+    "titleId": "incredible-hulk",
+    "characterId": "bruce-banner",
+    "role": "lead"
+  },
+  {
+    "id": "incredible-hulk:tony-stark:1",
+    "titleId": "incredible-hulk",
+    "characterId": "tony-stark",
+    "role": "cameo"
+  },
+  {
+    "id": "iron-man-2:tony-stark:0",
+    "titleId": "iron-man-2",
+    "characterId": "tony-stark",
+    "role": "lead"
+  },
+  {
+    "id": "iron-man-2:natasha-romanoff:1",
+    "titleId": "iron-man-2",
+    "characterId": "natasha-romanoff",
+    "role": "supporting"
+  },
+  {
+    "id": "thor:thor-odinson:0",
+    "titleId": "thor",
+    "characterId": "thor-odinson",
+    "role": "lead"
+  },
+  {
+    "id": "thor:loki:1",
+    "titleId": "thor",
+    "characterId": "loki",
+    "role": "supporting"
+  },
+  {
+    "id": "thor:clint-barton:2",
+    "titleId": "thor",
+    "characterId": "clint-barton",
+    "role": "cameo"
+  },
+  {
+    "id": "captain-america-first-avenger:steve-rogers:0",
+    "titleId": "captain-america-first-avenger",
+    "characterId": "steve-rogers",
+    "role": "lead"
+  },
+  {
+    "id": "avengers:tony-stark:0",
+    "titleId": "avengers",
+    "characterId": "tony-stark",
+    "role": "lead"
+  },
+  {
+    "id": "avengers:steve-rogers:1",
+    "titleId": "avengers",
+    "characterId": "steve-rogers",
+    "role": "lead"
+  },
+  {
+    "id": "avengers:thor-odinson:2",
+    "titleId": "avengers",
+    "characterId": "thor-odinson",
+    "role": "lead"
+  },
+  {
+    "id": "avengers:bruce-banner:3",
+    "titleId": "avengers",
+    "characterId": "bruce-banner",
+    "role": "lead"
+  },
+  {
+    "id": "avengers:natasha-romanoff:4",
+    "titleId": "avengers",
+    "characterId": "natasha-romanoff",
+    "role": "lead"
+  },
+  {
+    "id": "avengers:clint-barton:5",
+    "titleId": "avengers",
+    "characterId": "clint-barton",
+    "role": "supporting"
+  },
+  {
+    "id": "avengers:loki:6",
+    "titleId": "avengers",
+    "characterId": "loki",
+    "role": "supporting"
+  },
+  {
+    "id": "iron-man-3:tony-stark:0",
+    "titleId": "iron-man-3",
+    "characterId": "tony-stark",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-infinity-war:tony-stark:0",
+    "titleId": "avengers-infinity-war",
+    "characterId": "tony-stark",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-infinity-war:steve-rogers:1",
+    "titleId": "avengers-infinity-war",
+    "characterId": "steve-rogers",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-infinity-war:thor-odinson:2",
+    "titleId": "avengers-infinity-war",
+    "characterId": "thor-odinson",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-infinity-war:peter-parker:3",
+    "titleId": "avengers-infinity-war",
+    "characterId": "peter-parker",
+    "role": "supporting"
+  },
+  {
+    "id": "avengers-infinity-war:tchalla:4",
+    "titleId": "avengers-infinity-war",
+    "characterId": "tchalla",
+    "role": "supporting"
+  },
+  {
+    "id": "captain-marvel:carol-danvers:0",
+    "titleId": "captain-marvel",
+    "characterId": "carol-danvers",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:tony-stark:0",
+    "titleId": "avengers-endgame",
+    "characterId": "tony-stark",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:steve-rogers:1",
+    "titleId": "avengers-endgame",
+    "characterId": "steve-rogers",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:thor-odinson:2",
+    "titleId": "avengers-endgame",
+    "characterId": "thor-odinson",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:bruce-banner:3",
+    "titleId": "avengers-endgame",
+    "characterId": "bruce-banner",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:natasha-romanoff:4",
+    "titleId": "avengers-endgame",
+    "characterId": "natasha-romanoff",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:clint-barton:5",
+    "titleId": "avengers-endgame",
+    "characterId": "clint-barton",
+    "role": "lead"
+  },
+  {
+    "id": "avengers-endgame:carol-danvers:6",
+    "titleId": "avengers-endgame",
+    "characterId": "carol-danvers",
+    "role": "supporting"
+  },
+  {
+    "id": "wandavision:wanda-maximoff:0",
+    "titleId": "wandavision",
+    "characterId": "wanda-maximoff",
+    "role": "lead"
+  },
+  {
+    "id": "loki-s1:loki:0",
+    "titleId": "loki-s1",
+    "characterId": "loki",
+    "role": "lead"
+  }
+]

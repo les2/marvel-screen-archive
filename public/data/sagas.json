@@ -1,0 +1,7 @@
+[
+  {"id":"infinity-saga","name":"The Infinity Saga","universeId":"mcu-616","phases":[1,2,3],"description":"The MCU arc from Iron Man through Spider-Man: Far From Home, centered on the Infinity Stones and Thanos."},
+  {"id":"multiverse-saga","name":"The Multiverse Saga","universeId":"mcu-616","phases":[4,5,6],"description":"The MCU arc exploring branching realities, incursions, variants, and converging universes."},
+  {"id":"x-men-original-timeline","name":"Original X-Men Timeline","universeId":"fox-xmen","description":"The initial Fox X-Men continuity before the Days of Future Past divergence."},
+  {"id":"x-men-revised-timeline","name":"Revised X-Men Timeline","universeId":"fox-xmen","description":"The altered continuity created by the events of Days of Future Past."},
+  {"id":"defenders-saga","name":"The Defenders Saga","universeId":"marvel-television","description":"The connected street-level Marvel Television series originally released through Netflix."}
+]

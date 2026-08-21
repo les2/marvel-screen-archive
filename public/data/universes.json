@@ -1,0 +1,11 @@
+[
+  {"id":"mcu-616","name":"Marvel Cinematic Universe","shortName":"MCU","color":"#e34b35","description":"The primary Marvel Studios continuity, designated 616 on screen.","continuityType":"primary"},
+  {"id":"mcu-sacred-timeline","name":"MCU Sacred Timeline","shortName":"Sacred Timeline","color":"#d7b86e","description":"The main timeline through the Infinity and Multiverse sagas.","parentUniverseId":"mcu-616","continuityType":"branch"},
+  {"id":"fox-xmen","name":"Fox X-Men Universe","shortName":"X-Men","color":"#6f8ae7","description":"The interconnected X-Men film continuities, including altered timelines.","continuityType":"primary"},
+  {"id":"sony-raimi","name":"Raimi Spider-Man Universe","shortName":"Raimi","color":"#d9483b","description":"Sam Raimi's Spider-Man trilogy continuity.","continuityType":"primary"},
+  {"id":"sony-amazing","name":"Amazing Spider-Man Universe","shortName":"TASM","color":"#3f78d7","description":"The Marc Webb Spider-Man continuity.","continuityType":"reboot"},
+  {"id":"sony-ssu","name":"Sony's Spider-Man Universe","shortName":"SSU","color":"#8d5ae8","description":"Sony's live-action universe of Spider-Man-adjacent characters.","continuityType":"adjacent"},
+  {"id":"spider-verse","name":"Spider-Verse","shortName":"Spider-Verse","color":"#ef5cb4","description":"The animated multiverse centered on Miles Morales.","continuityType":"branch"},
+  {"id":"marvel-television","name":"Marvel Television Legacy","shortName":"Marvel TV","color":"#4da58f","description":"Marvel Television series spanning ABC, Netflix, Hulu and Freeform.","continuityType":"adjacent"},
+  {"id":"legacy-films","name":"Marvel Legacy Films","shortName":"Legacy","color":"#a3a29b","description":"Standalone and pre-MCU film continuities.","continuityType":"adjacent"}
+]

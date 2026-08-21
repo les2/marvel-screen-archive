@@ -1,0 +1,7 @@
+[
+  {"id":"marvel-movies","name":"Marvel Movies","url":"https://www.marvel.com/movies/","authority":"official","usedFor":["titles","release dates","official links"]},
+  {"id":"marvel-tv","name":"Marvel TV Shows","url":"https://www.marvel.com/tv-shows","authority":"official","usedFor":["series","season dates","official links"]},
+  {"id":"disney-plus","name":"Disney+","url":"https://www.disneyplus.com/brand/marvel","authority":"official","usedFor":["canonical streaming links","MCU timeline"]},
+  {"id":"imdb","name":"IMDb","url":"https://www.imdb.com/","authority":"reference","usedFor":["stable title identifiers"]},
+  {"id":"wikidata","name":"Wikidata","url":"https://www.wikidata.org/","authority":"community","usedFor":["cross-checking identifiers and dates"]}
+]

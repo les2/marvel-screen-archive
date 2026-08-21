@@ -1,0 +1,114 @@
+[
+  {
+    "id": "iron-man:post:0",
+    "titleId": "iron-man",
+    "position": "post",
+    "count": 1,
+    "summary": "A visitor introduces the Avengers Initiative.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "incredible-hulk:tag:0",
+    "titleId": "incredible-hulk",
+    "position": "tag",
+    "count": 1,
+    "summary": "Tony Stark discusses assembling a team.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "iron-man-2:post:0",
+    "titleId": "iron-man-2",
+    "position": "post",
+    "count": 1,
+    "summary": "An agent finds an unusual hammer in New Mexico.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "thor:post:0",
+    "titleId": "thor",
+    "position": "post",
+    "count": 1,
+    "summary": "A powerful cube draws the attention of Loki.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "captain-america-first-avenger:post:0",
+    "titleId": "captain-america-first-avenger",
+    "position": "post",
+    "count": 1,
+    "summary": "Steve Rogers receives a mission briefing for a new team.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "avengers:mid:0",
+    "titleId": "avengers",
+    "position": "mid",
+    "count": 1,
+    "summary": "A cosmic figure is told that challenging Earth is to court death.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "avengers:post:1",
+    "titleId": "avengers",
+    "position": "post",
+    "count": 1,
+    "summary": "The exhausted team shares a silent meal.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "iron-man-3:post:0",
+    "titleId": "iron-man-3",
+    "position": "post",
+    "count": 1,
+    "summary": "Tony discovers his listener has slept through most of the story.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "avengers-infinity-war:post:0",
+    "titleId": "avengers-infinity-war",
+    "position": "post",
+    "count": 1,
+    "summary": "A distress signal is sent as the consequences reach Earth.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "captain-marvel:mid:0",
+    "titleId": "captain-marvel",
+    "position": "mid",
+    "count": 1,
+    "summary": "The Avengers' pager receives an unexpected answer.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "captain-marvel:post:1",
+    "titleId": "captain-marvel",
+    "position": "post",
+    "count": 1,
+    "summary": "Goose coughs up a familiar object.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "wandavision:mid:0",
+    "titleId": "wandavision",
+    "position": "mid",
+    "count": 1,
+    "summary": "A visitor reveals an unexpected new identity.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "wandavision:post:1",
+    "titleId": "wandavision",
+    "position": "post",
+    "count": 1,
+    "summary": "Wanda studies a dangerous book in seclusion.",
+    "spoilerLevel": "light"
+  },
+  {
+    "id": "loki-s1:mid:0",
+    "titleId": "loki-s1",
+    "position": "mid",
+    "count": 1,
+    "summary": "Loki awakens among several surprising variants.",
+    "spoilerLevel": "light"
+  }
+]

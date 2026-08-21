@@ -1,0 +1,17 @@
+[
+  {"id":"tony-stark","name":"Tony Stark","aliases":["Iron Man"],"officialUrl":"https://www.marvel.com/characters/iron-man-tony-stark","wikipediaUrl":"https://en.wikipedia.org/wiki/Tony_Stark_(Marvel_Cinematic_Universe)","artworkUrl":"https://www.marvel.com/characters/iron-man-tony-stark/in-comics"},
+  {"id":"steve-rogers","name":"Steve Rogers","aliases":["Captain America"],"officialUrl":"https://www.marvel.com/characters/captain-america-steve-rogers","wikipediaUrl":"https://en.wikipedia.org/wiki/Steve_Rogers_(Marvel_Cinematic_Universe)"},
+  {"id":"thor-odinson","name":"Thor Odinson","aliases":["Thor"],"officialUrl":"https://www.marvel.com/characters/thor-thor-odinson","wikipediaUrl":"https://en.wikipedia.org/wiki/Thor_(Marvel_Cinematic_Universe)"},
+  {"id":"natasha-romanoff","name":"Natasha Romanoff","aliases":["Black Widow"],"officialUrl":"https://www.marvel.com/characters/black-widow-natasha-romanoff","wikipediaUrl":"https://en.wikipedia.org/wiki/Natasha_Romanoff_(Marvel_Cinematic_Universe)"},
+  {"id":"bruce-banner","name":"Bruce Banner","aliases":["Hulk"],"officialUrl":"https://www.marvel.com/characters/hulk-bruce-banner","wikipediaUrl":"https://en.wikipedia.org/wiki/Bruce_Banner_(Marvel_Cinematic_Universe)"},
+  {"id":"clint-barton","name":"Clint Barton","aliases":["Hawkeye"],"officialUrl":"https://www.marvel.com/characters/hawkeye-clint-barton","wikipediaUrl":"https://en.wikipedia.org/wiki/Clint_Barton_(Marvel_Cinematic_Universe)"},
+  {"id":"peter-parker","name":"Peter Parker","aliases":["Spider-Man"],"officialUrl":"https://www.marvel.com/characters/spider-man-peter-parker","wikipediaUrl":"https://en.wikipedia.org/wiki/Peter_Parker_(Marvel_Cinematic_Universe)"},
+  {"id":"wanda-maximoff","name":"Wanda Maximoff","aliases":["Scarlet Witch"],"officialUrl":"https://www.marvel.com/characters/scarlet-witch-wanda-maximoff","wikipediaUrl":"https://en.wikipedia.org/wiki/Wanda_Maximoff_(Marvel_Cinematic_Universe)"},
+  {"id":"loki","name":"Loki Laufeyson","aliases":["Loki","God of Mischief"],"officialUrl":"https://www.marvel.com/characters/loki","wikipediaUrl":"https://en.wikipedia.org/wiki/Loki_(Marvel_Cinematic_Universe)"},
+  {"id":"tchalla","name":"T'Challa","aliases":["Black Panther"],"officialUrl":"https://www.marvel.com/characters/black-panther-t-challa","wikipediaUrl":"https://en.wikipedia.org/wiki/T%27Challa_(Marvel_Cinematic_Universe)"},
+  {"id":"carol-danvers","name":"Carol Danvers","aliases":["Captain Marvel"],"officialUrl":"https://www.marvel.com/characters/captain-marvel-carol-danvers","wikipediaUrl":"https://en.wikipedia.org/wiki/Carol_Danvers_(Marvel_Cinematic_Universe)"},
+  {"id":"stephen-strange","name":"Stephen Strange","aliases":["Doctor Strange"],"officialUrl":"https://www.marvel.com/characters/doctor-strange-stephen-strange","wikipediaUrl":"https://en.wikipedia.org/wiki/Stephen_Strange_(Marvel_Cinematic_Universe)"},
+  {"id":"miles-morales","name":"Miles Morales","aliases":["Spider-Man"],"officialUrl":"https://www.marvel.com/characters/spider-man-miles-morales","wikipediaUrl":"https://en.wikipedia.org/wiki/Miles_Morales"},
+  {"id":"logan","name":"Logan","aliases":["Wolverine"],"officialUrl":"https://www.marvel.com/characters/wolverine-james-howlett","wikipediaUrl":"https://en.wikipedia.org/wiki/Logan_(film_character)"},
+  {"id":"matt-murdock","name":"Matt Murdock","aliases":["Daredevil"],"officialUrl":"https://www.marvel.com/characters/daredevil-matthew-murdock","wikipediaUrl":"https://en.wikipedia.org/wiki/Matt_Murdock_(Marvel_Cinematic_Universe)"}
+]
