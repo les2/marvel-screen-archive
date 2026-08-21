@@ -3,5 +3,10 @@
   {"id":"marvel-tv","name":"Marvel TV Shows","url":"https://www.marvel.com/tv-shows","authority":"official","usedFor":["series","season dates","official links"]},
   {"id":"disney-plus","name":"Disney+","url":"https://www.disneyplus.com/brand/marvel","authority":"official","usedFor":["canonical streaming links","MCU timeline"]},
   {"id":"imdb","name":"IMDb","url":"https://www.imdb.com/","authority":"reference","usedFor":["stable title identifiers"]},
-  {"id":"wikidata","name":"Wikidata","url":"https://www.wikidata.org/","authority":"community","usedFor":["cross-checking identifiers and dates"]}
+  {"id":"imdb-non-commercial","name":"IMDb Non-Commercial Datasets","url":"https://developer.imdb.com/non-commercial-datasets/","authority":"reference","usedFor":["direct title identifiers","credited character names","billing order"]},
+  {"id":"wikidata","name":"Wikidata","url":"https://www.wikidata.org/","authority":"community","usedFor":["Apple TV identifiers","Prime Video identifiers","Disney+ identifiers","cross-checking identifiers"]},
+  {"id":"google-maps-urls","name":"Google Maps URLs","url":"https://developers.google.com/maps/documentation/urls/get-started","authority":"official","usedFor":["keyless location-aware theater discovery"]},
+  {"id":"apple-search-api","name":"Apple Search API","url":"https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/","authority":"official","usedFor":["storefront-link feasibility"]},
+  {"id":"movieglu","name":"MovieGlu API","url":"https://developer.movieglu.com/","authority":"official","usedFor":["future licensed real-time showtimes integration"]},
+  {"id":"amazon-creators-api","name":"Amazon Creators API","url":"https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction","authority":"official","usedFor":["future authenticated affiliate product links"]}
 ]

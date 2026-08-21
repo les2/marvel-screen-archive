@@ -48,7 +48,7 @@ export class CatalogDataService {
       const tx = db.transaction(this.storeName, 'readwrite');
       const store = tx.objectStore(this.storeName);
       Object.entries(bundle).forEach(([key, value]) => store.put(value, key));
-      store.put({ version:'0.1.0', cachedAt:new Date().toISOString() }, 'manifest');
+      store.put({ version:'0.4.0', cachedAt:new Date().toISOString() }, 'manifest');
       tx.oncomplete = () => resolve(); tx.onerror = () => reject(tx.error);
     });
     db.close();

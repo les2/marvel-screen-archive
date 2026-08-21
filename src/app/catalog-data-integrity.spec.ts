@@ -67,4 +67,35 @@ describe('catalog data integrity', () => {
     expect(collectionsJson.every(({description}) => description.length >= 20)).toBe(true);
     expect(storyArcsJson.every(({description}) => description.length >= 20)).toBe(true);
   });
+
+  it('provides broad, reciprocal character coverage with labeled AI profiles', () => {
+    const appearances = titles.flatMap((title) => title.appearances.map((appearance) => ({titleId:title.id,...appearance})));
+    const appearanceCountByCharacter = new Map<string,number>();
+    for (const {characterId} of appearances) appearanceCountByCharacter.set(characterId,(appearanceCountByCharacter.get(characterId) ?? 0) + 1);
+    expect(characters.length).toBeGreaterThanOrEqual(1400);
+    expect(appearances.length).toBeGreaterThanOrEqual(2300);
+    expect(titles.filter(({appearances}) => appearances.length).length).toBeGreaterThanOrEqual(188);
+    for (const character of characters) {
+      expect(character.descriptionSource).toBe('ai-assisted');
+      expect(character.description?.length).toBeGreaterThan(70);
+      expect(character.appearanceCount).toBe(appearanceCountByCharacter.get(character.id));
+      expect(['confirmed','probable','screen-original','unclassified']).toContain(character.comicOrigin);
+    }
+  });
+
+  it('uses direct stable IDs when available and labels every fallback honestly', () => {
+    const allLinks = titles.flatMap(({links}) => links);
+    expect(titles.every(({links}) => links.some(({provider,resolution,url}) => provider === 'IMDb' && resolution === 'direct' && /\/title\/tt\d+\/$/.test(url)))).toBe(true);
+    expect(titles.filter(({links}) => links.some(({provider,resolution}) => provider === 'Apple TV' && resolution === 'direct')).length).toBeGreaterThanOrEqual(90);
+    expect(titles.filter(({links}) => links.some(({provider,resolution}) => provider === 'Disney+' && resolution === 'direct')).length).toBeGreaterThanOrEqual(100);
+    expect(allLinks.filter(({resolution}) => resolution === 'direct').some(({url}) => /\/find\/?|\/search\??|[?&](?:q|term|k)=/i.test(url))).toBe(false);
+    expect(allLinks.every(({resolution}) => ['direct','search','live-search'].includes(resolution ?? ''))).toBe(true);
+  });
+
+  it('adds keyless live theater discovery to upcoming and recently released films', () => {
+    const announcedFilms = titles.filter(({status,mediaType}) => status === 'announced' && mediaType === 'film');
+    expect(announcedFilms).toHaveLength(3);
+    expect(announcedFilms.every(({links}) => links.some(({provider,kind,resolution,url}) => provider === 'Google Maps' && kind === 'theater' && resolution === 'live-search' && url.startsWith('https://www.google.com/maps/search/')))).toBe(true);
+    expect(titleById.get('spider-man-brand-new-day')?.links.some(({kind,resolution}) => kind === 'theater' && resolution === 'live-search')).toBe(true);
+  });
 });

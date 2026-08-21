@@ -10,12 +10,24 @@ The browser loads versioned JSON documents, then mirrors the primary entity sets
 - `phases`: numbered release-program groups that belong to a saga. Phase Six is the current phase of the Multiverse Saga.
 - `story-arcs`: overlapping thematic paths such as the Infinity Stones, Thanos/Endgame, multiversal incursions, or the road to Doomsday and Secret Wars. These are intentionally separate from official saga and phase membership.
 - `collections`: ordered title groups, including trilogies, character series, teams, and studio eras.
-- `characters`: canonical character identity, aliases, and public reference/artwork links.
-- `appearances`: a derived many-to-many relation between titles and characters, with `lead`, `supporting`, or `cameo` role.
+- `characters`: canonical or credited screen identity, aliases, continuity membership, first/latest appearance, appearance count, AI-assisted profile, comic-origin confidence, and public reference/artwork links.
+- `appearances`: a derived many-to-many relation between titles and characters, with `lead`, `major`, `supporting`, `minor`, or `cameo` role, credited performer order, source scope, and verified/inferred confidence.
 - `credit-scenes`: a derived title relation with position, count, spoiler level, and summary.
 - `sources`: public provenance used to verify dates, identifiers, availability, and official links.
 
 Every relation uses stable string IDs instead of nesting copies. Derived previous/next links are materialized in `titles.json` so a static client can navigate without recomputing the full graph.
+
+## Character coverage and confidence
+
+IMDb's public non-commercial title and principal-credit files provide stable title IDs, credited character names, and performer order. Curated identity groups merge established aliases such as Tony Stark/Iron Man and Logan/Wolverine; all other identities remain conservative screen-credit records. `comicOrigin` distinguishes confirmed identities from probable comic-derived characters, while `profileConfidence` and each appearance's `roleConfidence` prevent inferred classifications from being presented as editorial fact.
+
+Role inference uses the credited performer's order: the first two performers are `lead`, the next three `major`, the next five `supporting`, and later named roles `minor`; uncredited or archival appearances are `cameo`. Secondary roles played by the same performer default to `minor`. Hand-verified core records override the inference.
+
+## External links and showtimes
+
+Every outbound link declares `resolution`: `direct`, `search`, or `live-search`. IMDb title IDs come from IMDb's dataset. Apple TV, Prime Video, and Disney+ IDs are resolved through Wikidata and formatted with each property's declared URL pattern. Search links remain only when no stable public ID exists and the UI labels them as fallbacks.
+
+Announced films include a `theater` link using Google Maps URLs. This is keyless and lets Google use the visitor's current map area without the archive collecting location. Fully inline showtimes require a licensed provider: MovieGlu offers nearby showtimes and booking deep links, but requires credentials, territory licensing, and a request quota. Amazon affiliate links likewise require the site's owner to enroll in Amazon Associates/Creators API; no affiliate ID is fabricated or embedded.
 
 ## MCU era hierarchy
 

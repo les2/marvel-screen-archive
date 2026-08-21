@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import type { Character, Collection, Phase, Saga, StoryArc, TitleRecord, Universe } from './models';
+import type { Character, Collection, ExternalLink, Phase, Saga, StoryArc, TitleRecord, Universe } from './models';
 import { CatalogDataService } from './catalog-data.service';
 import { availablePhaseIds, availableSagaIds, compatiblePhaseSelection, filterAndSortTitles, type CatalogSortMode } from './catalog-query';
 import { parseCatalogState, serializeCatalogState } from './catalog-url-state';
@@ -77,6 +77,9 @@ export class AppComponent implements OnInit {
   sagaFor(id?: string): Saga | undefined { return this.sagas().find((saga) => saga.id === id); }
   phaseFor(id?: string): Phase | undefined { return this.phases().find((phase) => phase.id === id); }
   storyArcFor(id: string): StoryArc | undefined { return this.storyArcs().find((arc) => arc.id === id); }
+  watchLinks(title: TitleRecord): ExternalLink[] { return title.links.filter(({kind}) => kind !== 'theater'); }
+  theaterLinks(title: TitleRecord): ExternalLink[] { return title.links.filter(({kind}) => kind === 'theater'); }
+  linkResolutionLabel(link: ExternalLink): string { return link.resolution === 'live-search' ? 'Live nearby search' : link.resolution === 'search' ? 'Search fallback' : 'Direct'; }
   creditSceneCountFor(title: TitleRecord): number { return title.creditScenes.reduce((sum, scene) => sum + scene.count, 0); }
   sagaAvailable(id: string): boolean { return this.availableSagas().has(id); }
   phaseAvailable(id: string): boolean { return this.availablePhases().has(id); }
