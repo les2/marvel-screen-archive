@@ -68,7 +68,7 @@ const compact = rows.filter(([id]) => !existing.has(id)).map(([id,title,mediaTyp
   return {
     id,title,mediaType,releaseDate,status,
     synopsis:`A ${mediaType} entry in the ${universeId.replaceAll('-', ' ')} screen catalog. Detailed editorial metadata is queued for verification.`,
-    universeIds:[universeId],sagaIds:universeId === 'mcu-616' ? ['multiverse-saga'] : [],collectionIds:[],releaseOrder:0,
+    universeIds:[universeId],sagaIds:[],collectionIds:[],releaseOrder:0,
     appearances:[],creditScenes:[],
     links:[
       ...(isMarvelOwned ? [{provider:'Marvel',url:`https://www.marvel.com/search?limit=20&query=${encoded}`,kind:'official'}] : []),
@@ -81,6 +81,44 @@ const compact = rows.filter(([id]) => !existing.has(id)).map(([id,title,mediaTyp
 
 const all = [...detailed.map((title) => ({dataQuality:'verified-core', ...title})), ...compact]
   .sort((a,b) => a.releaseDate.localeCompare(b.releaseDate) || a.title.localeCompare(b.title));
+
+// MCU phase membership is explicit source data. Saga membership is derived from
+// the phase so pre-Endgame titles can never drift into the Multiverse Saga.
+const phaseMembership = {
+  'mcu-phase-1':['iron-man','incredible-hulk','iron-man-2','thor','captain-america-first-avenger','avengers'],
+  'mcu-phase-2':['iron-man-3','thor-dark-world','captain-america-winter-soldier','guardians-galaxy','avengers-age-ultron','ant-man'],
+  'mcu-phase-3':['captain-america-civil-war','doctor-strange','guardians-galaxy-2','spider-man-homecoming','thor-ragnarok','black-panther','avengers-infinity-war','ant-man-wasp','captain-marvel','avengers-endgame','spider-man-far-from-home'],
+  'mcu-phase-4':['wandavision','falcon-winter-soldier','loki-s1','black-widow','what-if-s1','shang-chi','eternals','hawkeye','spider-man-no-way-home','moon-knight','doctor-strange-multiverse','ms-marvel','thor-love-thunder','i-am-groot-s1','she-hulk','werewolf-by-night','black-panther-wakanda-forever','guardians-holiday-special'],
+  'mcu-phase-5':['ant-man-quantumania','guardians-galaxy-3','secret-invasion','i-am-groot-s2','loki-s2','the-marvels','what-if-s2','echo','deadpool-wolverine','agatha-all-along','what-if-s3','your-friendly-neighborhood-spider-man','captain-america-brave-new-world','daredevil-born-again-s1','thunderbolts','ironheart'],
+  'mcu-phase-6':['fantastic-four-first-steps','eyes-of-wakanda','marvel-zombies','wonder-man','daredevil-born-again-s2','punisher-one-last-kill','spider-man-brand-new-day','visionquest','avengers-doomsday','avengers-secret-wars']
+};
+const titleById = new Map(all.map((title) => [title.id, title]));
+Object.entries(phaseMembership).forEach(([phaseId,titleIds],phaseIndex) => {
+  const sagaId = phaseIndex < 3 ? 'infinity-saga' : 'multiverse-saga';
+  for (const id of titleIds) {
+    const title = titleById.get(id);
+    if (!title) throw new Error(`Unknown MCU title in ${phaseId}: ${id}`);
+    title.phaseId = phaseId;
+    title.sagaIds = [sagaId];
+    title.arcIds = [];
+  }
+});
+const arcMembership = {
+  'infinity-stones': [...phaseMembership['mcu-phase-1'], ...phaseMembership['mcu-phase-2'], ...phaseMembership['mcu-phase-3']],
+  'thanos-endgame':['avengers-infinity-war','ant-man-wasp','captain-marvel','avengers-endgame'],
+  'multiverse-incursions':['loki-s1','what-if-s1','spider-man-no-way-home','doctor-strange-multiverse','ant-man-quantumania','loki-s2','deadpool-wolverine','fantastic-four-first-steps','avengers-doomsday','avengers-secret-wars'],
+  'doomsday-secret-wars':['fantastic-four-first-steps','spider-man-brand-new-day','visionquest','avengers-doomsday','avengers-secret-wars']
+};
+for (const [arcId,titleIds] of Object.entries(arcMembership)) {
+  for (const id of titleIds) {
+    const title = titleById.get(id);
+    if (title) title.arcIds = [...new Set([...(title.arcIds ?? []), arcId])];
+  }
+}
+for (const id of ['avengers-endgame','avengers-doomsday','avengers-secret-wars']) {
+  const title = titleById.get(id);
+  if (title) title.isSagaCulmination = true;
+}
 const mcuTimeline = [
   'captain-america-first-avenger','captain-marvel','iron-man','iron-man-2','thor','incredible-hulk','avengers','thor-dark-world','iron-man-3','captain-america-winter-soldier','guardians-galaxy','guardians-galaxy-2','i-am-groot-s1','i-am-groot-s2','avengers-age-ultron','ant-man','captain-america-civil-war','black-widow','black-panther','spider-man-homecoming','doctor-strange','thor-ragnarok','ant-man-wasp','avengers-infinity-war','avengers-endgame','loki-s1','what-if-s1','wandavision','shang-chi','falcon-winter-soldier','spider-man-far-from-home','eternals','spider-man-no-way-home','doctor-strange-multiverse','hawkeye','moon-knight','black-panther-wakanda-forever','echo','she-hulk','ms-marvel','thor-love-thunder','ironheart','werewolf-by-night','guardians-holiday-special','ant-man-quantumania','guardians-galaxy-3','secret-invasion','the-marvels','deadpool-wolverine','agatha-all-along','captain-america-brave-new-world','daredevil-born-again-s1','thunderbolts','fantastic-four-first-steps'
 ];

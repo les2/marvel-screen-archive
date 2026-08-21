@@ -2774,6 +2774,10 @@
         "position": 1,
         "nextId": "iron-man-2"
       }
+    ],
+    "phaseId": "mcu-phase-1",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -2867,6 +2871,10 @@
         "previousId": "iron-man",
         "nextId": "iron-man-2"
       }
+    ],
+    "phaseId": "mcu-phase-1",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -3343,6 +3351,10 @@
         "previousId": "iron-man",
         "nextId": "iron-man-3"
       }
+    ],
+    "phaseId": "mcu-phase-1",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -3628,6 +3640,10 @@
         "previousId": "iron-man-2",
         "nextId": "captain-america-first-avenger"
       }
+    ],
+    "phaseId": "mcu-phase-1",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -3861,6 +3877,10 @@
         "position": 1,
         "nextId": "captain-america-winter-soldier"
       }
+    ],
+    "phaseId": "mcu-phase-1",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -4080,6 +4100,10 @@
         "position": 1,
         "nextId": "avengers-age-ultron"
       }
+    ],
+    "phaseId": "mcu-phase-1",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -4266,6 +4290,10 @@
         "position": 3,
         "previousId": "iron-man-2"
       }
+    ],
+    "phaseId": "mcu-phase-2",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -4481,7 +4509,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 88,
@@ -4540,6 +4568,10 @@
         "previousId": "iron-man-3",
         "nextId": "captain-america-winter-soldier"
       }
+    ],
+    "phaseId": "mcu-phase-2",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -4648,7 +4680,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 91,
@@ -4713,6 +4745,10 @@
         "previousId": "captain-america-first-avenger",
         "nextId": "captain-america-civil-war"
       }
+    ],
+    "phaseId": "mcu-phase-2",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -4818,7 +4854,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 94,
@@ -4882,6 +4918,10 @@
         "position": 1,
         "nextId": "guardians-galaxy-2"
       }
+    ],
+    "phaseId": "mcu-phase-2",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -5069,7 +5109,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 98,
@@ -5134,6 +5174,10 @@
         "previousId": "avengers",
         "nextId": "avengers-infinity-war"
       }
+    ],
+    "phaseId": "mcu-phase-2",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -5148,7 +5192,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 99,
@@ -5207,6 +5251,10 @@
         "previousId": "avengers-age-ultron",
         "nextId": "captain-america-civil-war"
       }
+    ],
+    "phaseId": "mcu-phase-2",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -5425,7 +5473,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 104,
@@ -5490,6 +5538,10 @@
         "previousId": "captain-america-winter-soldier",
         "nextId": "captain-america-brave-new-world"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -5661,7 +5713,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 108,
@@ -5720,6 +5772,10 @@
         "previousId": "captain-america-civil-war",
         "nextId": "guardians-galaxy-2"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -5891,7 +5947,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 112,
@@ -5956,6 +6012,10 @@
         "previousId": "guardians-galaxy",
         "nextId": "guardians-galaxy-3"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -5970,7 +6030,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 113,
@@ -6029,6 +6089,10 @@
         "previousId": "guardians-galaxy-2",
         "nextId": "thor-ragnarok"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -6310,7 +6374,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 119,
@@ -6369,6 +6433,10 @@
         "previousId": "spider-man-homecoming",
         "nextId": "black-panther"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -6509,7 +6577,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 122,
@@ -6568,6 +6636,10 @@
         "previousId": "thor-ragnarok",
         "nextId": "avengers-infinity-war"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -6680,6 +6752,11 @@
         "previousId": "avengers-age-ultron",
         "nextId": "avengers-endgame"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones",
+      "thanos-endgame"
     ]
   },
   {
@@ -6804,7 +6881,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 126,
@@ -6863,6 +6940,11 @@
         "previousId": "avengers-infinity-war",
         "nextId": "captain-marvel"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones",
+      "thanos-endgame"
     ]
   },
   {
@@ -7052,6 +7134,11 @@
         "previousId": "ant-man-wasp",
         "nextId": "avengers-endgame"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones",
+      "thanos-endgame"
     ]
   },
   {
@@ -7165,7 +7252,13 @@
         "previousId": "avengers-infinity-war",
         "nextId": "avengers-doomsday"
       }
-    ]
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones",
+      "thanos-endgame"
+    ],
+    "isSagaCulmination": true
   },
   {
     "dataQuality": "catalog",
@@ -7226,7 +7319,7 @@
       "mcu-616"
     ],
     "sagaIds": [
-      "multiverse-saga"
+      "infinity-saga"
     ],
     "collectionIds": [],
     "releaseOrder": 132,
@@ -7284,6 +7377,10 @@
         "position": 23,
         "previousId": "avengers-endgame"
       }
+    ],
+    "phaseId": "mcu-phase-3",
+    "arcIds": [
+      "infinity-stones"
     ]
   },
   {
@@ -7477,7 +7574,9 @@
     "previousInTimeline": {
       "id": "avengers-endgame"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -7543,7 +7642,9 @@
     "nextInTimeline": {
       "id": "spider-man-far-from-home"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -7685,7 +7786,11 @@
     "nextInTimeline": {
       "id": "what-if-s1"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -7751,7 +7856,9 @@
     "nextInTimeline": {
       "id": "black-panther"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -7864,7 +7971,11 @@
     "nextInTimeline": {
       "id": "wandavision"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -7930,7 +8041,9 @@
     "nextInTimeline": {
       "id": "falcon-winter-soldier"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8043,7 +8156,9 @@
     "nextInTimeline": {
       "id": "spider-man-no-way-home"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8172,7 +8287,9 @@
     "nextInTimeline": {
       "id": "moon-knight"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8238,7 +8355,11 @@
     "nextInTimeline": {
       "id": "doctor-strange-multiverse"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -8304,7 +8425,9 @@
     "nextInTimeline": {
       "id": "black-panther-wakanda-forever"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8417,7 +8540,11 @@
     "nextInTimeline": {
       "id": "hawkeye"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -8483,7 +8610,9 @@
     "nextInTimeline": {
       "id": "thor-love-thunder"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8549,7 +8678,9 @@
     "nextInTimeline": {
       "id": "ironheart"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8615,7 +8746,9 @@
     "nextInTimeline": {
       "id": "i-am-groot-s2"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8681,7 +8814,9 @@
     "nextInTimeline": {
       "id": "ms-marvel"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8747,7 +8882,9 @@
     "nextInTimeline": {
       "id": "guardians-holiday-special"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8813,7 +8950,9 @@
     "nextInTimeline": {
       "id": "echo"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8879,7 +9018,9 @@
     "nextInTimeline": {
       "id": "ant-man-quantumania"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-4",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -8989,7 +9130,11 @@
     "nextInTimeline": {
       "id": "guardians-galaxy-3"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -9061,7 +9206,9 @@
         "position": 3,
         "previousId": "guardians-galaxy-2"
       }
-    ]
+    ],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9181,7 +9328,9 @@
     "nextInTimeline": {
       "id": "the-marvels"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9247,7 +9396,9 @@
     "nextInTimeline": {
       "id": "avengers-age-ultron"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9312,7 +9463,11 @@
     "nextInTimeline": {
       "id": "what-if-s2"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -9378,7 +9533,9 @@
     "nextInTimeline": {
       "id": "deadpool-wolverine"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9443,7 +9600,9 @@
     "nextInTimeline": {
       "id": "what-if-s3"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9509,7 +9668,9 @@
     "nextInTimeline": {
       "id": "she-hulk"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9726,7 +9887,11 @@
     "nextInTimeline": {
       "id": "agatha-all-along"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": [
+      "multiverse-incursions"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -9792,7 +9957,9 @@
     "nextInTimeline": {
       "id": "captain-america-brave-new-world"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -9948,7 +10115,9 @@
     "nextInTimeline": {
       "id": "your-friendly-neighborhood-spider-man"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10013,7 +10182,9 @@
     "nextInTimeline": {
       "id": "eyes-of-wakanda"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10085,7 +10256,9 @@
         "position": 4,
         "previousId": "captain-america-civil-war"
       }
-    ]
+    ],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10151,7 +10324,9 @@
     "nextInTimeline": {
       "id": "thunderbolts"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10217,7 +10392,9 @@
     "nextInTimeline": {
       "id": "fantastic-four-first-steps"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10283,7 +10460,9 @@
     "nextInTimeline": {
       "id": "werewolf-by-night"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-5",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10349,7 +10528,12 @@
     "nextInTimeline": {
       "id": "loki-s2"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": [
+      "multiverse-incursions",
+      "doomsday-secret-wars"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -10414,7 +10598,9 @@
     "nextInTimeline": {
       "id": "marvel-zombies"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10479,7 +10665,9 @@
     "nextInTimeline": {
       "id": "wonder-man"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10544,7 +10732,9 @@
     "nextInTimeline": {
       "id": "daredevil-born-again-s2"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10609,7 +10799,9 @@
     "nextInTimeline": {
       "id": "punisher-one-last-kill"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10674,7 +10866,9 @@
     "nextInTimeline": {
       "id": "spider-man-brand-new-day"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": []
   },
   {
     "dataQuality": "catalog",
@@ -10739,7 +10933,11 @@
     "nextInTimeline": {
       "id": "visionquest"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": [
+      "doomsday-secret-wars"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -10804,7 +11002,11 @@
     "nextInTimeline": {
       "id": "avengers-doomsday"
     },
-    "collectionNavigation": []
+    "collectionNavigation": [],
+    "phaseId": "mcu-phase-6",
+    "arcIds": [
+      "doomsday-secret-wars"
+    ]
   },
   {
     "dataQuality": "catalog",
@@ -10876,7 +11078,13 @@
         "previousId": "avengers-endgame",
         "nextId": "avengers-secret-wars"
       }
-    ]
+    ],
+    "phaseId": "mcu-phase-6",
+    "arcIds": [
+      "multiverse-incursions",
+      "doomsday-secret-wars"
+    ],
+    "isSagaCulmination": true
   },
   {
     "dataQuality": "catalog",
@@ -10991,6 +11199,12 @@
         "position": 6,
         "previousId": "avengers-doomsday"
       }
-    ]
+    ],
+    "phaseId": "mcu-phase-6",
+    "arcIds": [
+      "multiverse-incursions",
+      "doomsday-secret-wars"
+    ],
+    "isSagaCulmination": true
   }
 ]

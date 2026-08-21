@@ -1,7 +1,7 @@
-const CACHE = 'marvel-archive-v0.1.0';
+const CACHE = 'marvel-archive-v0.2.0';
 const CORE = [
   '/', '/index.html', '/main.js', '/styles.css', '/manifest.webmanifest', '/favicon.svg', '/og.png',
-  '/data/metadata.json', '/data/titles.json', '/data/characters.json', '/data/universes.json', '/data/sagas.json',
+  '/data/metadata.json', '/data/titles.json', '/data/characters.json', '/data/universes.json', '/data/sagas.json', '/data/phases.json', '/data/story-arcs.json',
   '/data/collections.json', '/data/appearances.json', '/data/credit-scenes.json', '/data/sources.json',
   '/data/schema/metadata.schema.json', '/data/schema/title.schema.json', '/data/schema/character.schema.json', '/data/schema/universe.schema.json'
 ];

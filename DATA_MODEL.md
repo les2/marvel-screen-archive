@@ -6,7 +6,9 @@ The browser loads versioned JSON documents, then mirrors the primary entity sets
 
 - `titles`: films, series, specials, and shorts. Holds release chronology, continuity chronology, external links, appearances, credit scenes, and data-quality state.
 - `universes`: a continuity graph. `parentUniverseId` represents a branch or nested continuity; `continuityType` distinguishes a primary universe, branch, reboot, or adjacent continuity.
-- `sagas`: named story arcs inside a universe, such as the Infinity Saga or an X-Men timeline.
+- `sagas`: top-level eras inside a universe. For the MCU, the Infinity Saga contains Phases One–Three and the Multiverse Saga contains Phases Four–Six.
+- `phases`: numbered release-program groups that belong to a saga. Phase Six is the current phase of the Multiverse Saga.
+- `story-arcs`: overlapping thematic paths such as the Infinity Stones, Thanos/Endgame, multiversal incursions, or the road to Doomsday and Secret Wars. These are intentionally separate from official saga and phase membership.
 - `collections`: ordered title groups, including trilogies, character series, teams, and studio eras.
 - `characters`: canonical character identity, aliases, and public reference/artwork links.
 - `appearances`: a derived many-to-many relation between titles and characters, with `lead`, `supporting`, or `cameo` role.
@@ -14,6 +16,10 @@ The browser loads versioned JSON documents, then mirrors the primary entity sets
 - `sources`: public provenance used to verify dates, identifiers, availability, and official links.
 
 Every relation uses stable string IDs instead of nesting copies. Derived previous/next links are materialized in `titles.json` so a static client can navigate without recomputing the full graph.
+
+## MCU era hierarchy
+
+`TitleRecord.phaseId` points to one phase, while `sagaIds` is materialized for direct browser filtering. `arcIds` can contain several overlapping story arcs, and `isSagaCulmination` identifies capstone titles such as *Avengers: Endgame*. The generator derives MCU saga membership from phase membership, preventing Phase One–Three titles from being mislabeled as Multiverse Saga entries.
 
 ## Versioning
 

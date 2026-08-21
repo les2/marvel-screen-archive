@@ -1,0 +1,8 @@
+[
+  {"id":"mcu-phase-1","name":"Phase One","number":1,"sagaId":"infinity-saga","status":"completed","startDate":"2008-05-02","endDate":"2012-05-04","description":"The formation of the original Avengers."},
+  {"id":"mcu-phase-2","name":"Phase Two","number":2,"sagaId":"infinity-saga","status":"completed","startDate":"2013-05-03","endDate":"2015-07-17","description":"The post-New York expansion of the MCU and the rise of Ultron."},
+  {"id":"mcu-phase-3","name":"Phase Three","number":3,"sagaId":"infinity-saga","status":"completed","startDate":"2016-05-06","endDate":"2019-07-02","description":"The conflict with Thanos, Endgame, and its epilogue."},
+  {"id":"mcu-phase-4","name":"Phase Four","number":4,"sagaId":"multiverse-saga","status":"completed","startDate":"2021-01-15","endDate":"2022-11-25","description":"A new generation emerges as the multiverse opens."},
+  {"id":"mcu-phase-5","name":"Phase Five","number":5,"sagaId":"multiverse-saga","status":"completed","startDate":"2023-02-17","endDate":"2025-07-01","description":"The multiverse destabilizes while new teams and street-level stories converge."},
+  {"id":"mcu-phase-6","name":"Phase Six","number":6,"sagaId":"multiverse-saga","status":"current","startDate":"2025-07-25","description":"Worlds collide on the road to Avengers: Doomsday and Avengers: Secret Wars."}
+]

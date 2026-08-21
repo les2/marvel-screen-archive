@@ -5,13 +5,15 @@ Marvel Archive is a public, browser-only screen chronology explorer and open JSO
 ## What it does
 
 - Instant local search by title, character, or alias
-- Filters by screen universe and format
+- Filters by screen universe, MCU saga, phase, and format
 - Release-date, universe-timeline, and alphabetical order
 - Ordered collections for trilogies, sagas, teams, and series
 - Character roles (`lead`, `supporting`, `cameo`) and credit-scene metadata
 - Official, Disney+, IMDb, artwork, and purchase-link slots
 - PWA installability, Angular service-worker caching, and IndexedDB fallback
 - Versioned entity files and JSON Schemas under `public/data`
+
+The MCU hierarchy is modeled explicitly as **Saga → Phase → Title**. The Infinity Saga contains Phases One–Three; the current Multiverse Saga contains Phases Four–Six. *Avengers: Doomsday* is a Phase Six culmination title, not the name of the saga.
 
 ## Technology
 

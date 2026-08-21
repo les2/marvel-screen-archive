@@ -1,0 +1,6 @@
+[
+  {"id":"infinity-stones","name":"Infinity Stones","sagaId":"infinity-saga","description":"The long-running thread connecting the Infinity Stones and Thanos."},
+  {"id":"thanos-endgame","name":"Thanos / Endgame","sagaId":"infinity-saga","description":"The direct convergence from Infinity War through Endgame."},
+  {"id":"multiverse-incursions","name":"Multiverse & Incursions","sagaId":"multiverse-saga","description":"Variants, branching timelines, incursions, and colliding realities."},
+  {"id":"doomsday-secret-wars","name":"Doomsday / Secret Wars","sagaId":"multiverse-saga","description":"The Phase Six convergence culminating in Doomsday and Secret Wars."}
+]
