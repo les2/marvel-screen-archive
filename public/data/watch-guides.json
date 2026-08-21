@@ -1,0 +1,73 @@
+[
+  {
+    "id":"doomsday-protocol",
+    "targetTitleId":"avengers-doomsday",
+    "name":"Countdown Protocol: Doomsday",
+    "eyebrow":"Featured mission file",
+    "description":"A story-first route through the 15 projects in Disney+’s Countdown to Avengers: Doomsday collection, with Loki split into its two season records and an optional animated mutant briefing from the archive.",
+    "version":"1.0.0",
+    "updatedAt":"2026-08-21T00:00:00Z",
+    "status":"featured",
+    "estimatedCoreMinutes":2474,
+    "sourceLinks":[
+      {"sourceId":"disney-plus-countdown","label":"Disney+ Countdown collection","url":"https://www.disneyplus.com/"},
+      {"sourceId":"gamesradar-doomsday-countdown","label":"Published 15-project list","url":"https://www.gamesradar.com/entertainment/marvel-movies/disney-has-released-a-list-of-essential-marvel-movies-to-watch-before-avengers-doomsday-and-fans-are-debating-the-most-confusing-omissions/"},
+      {"sourceId":"marvel-doomsday","label":"Marvel’s Avengers: Doomsday page","url":"https://www.marvel.com/movies/avengers-kang-dynasty"}
+    ],
+    "sections":[
+      {
+        "id":"mutant-legacy",
+        "name":"Mutant legacy",
+        "description":"Meet the original live-action X-Men whose history and fault lines now intersect with the Avengers.",
+        "items":[
+          {"titleId":"x-men","order":1,"priority":"studio-pick","rationale":"Introduces Xavier, Magneto, Cyclops, Jean Grey, Storm, Mystique, and the first Fox X-Men status quo.","estimatedMinutes":104,"runtimeLabel":"1h 44m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+X-Men+2000"},
+          {"titleId":"x2","order":2,"priority":"studio-pick","rationale":"Deepens the Xavier–Magneto alliance and brings Nightcrawler into the returning ensemble.","estimatedMinutes":134,"runtimeLabel":"2h 14m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+X2+X-Men+United"}
+        ]
+      },
+      {
+        "id":"avengers-foundation",
+        "name":"Avengers foundation",
+        "description":"The essential spine of the Infinity Saga: Steve Rogers, the team’s formation, Thanos, and the cost of Endgame.",
+        "items":[
+          {"titleId":"captain-america-first-avenger","order":3,"priority":"studio-pick","rationale":"Establishes Steve Rogers, the Super Soldier legacy, and the Tesseract thread that carries into the Avengers story.","estimatedMinutes":124,"runtimeLabel":"2h 04m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Captain+America+The+First+Avenger"},
+          {"titleId":"avengers","order":4,"priority":"studio-pick","rationale":"Forms the original Avengers and establishes Loki’s first collision with Earth’s heroes.","estimatedMinutes":143,"runtimeLabel":"2h 23m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Marvel%27s+The+Avengers"},
+          {"titleId":"avengers-infinity-war","order":5,"priority":"studio-pick","rationale":"Converges the Avengers, Wakanda, and the cosmic heroes around Thanos and the Infinity Stones.","estimatedMinutes":149,"runtimeLabel":"2h 29m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Avengers+Infinity+War"},
+          {"titleId":"avengers-endgame","order":6,"priority":"studio-pick","rationale":"Resolves the Infinity Saga while creating the post-Blip world and time-travel consequences inherited by Doomsday.","estimatedMinutes":181,"runtimeLabel":"3h 01m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Avengers+Endgame"}
+        ]
+      },
+      {
+        "id":"multiverse-rules",
+        "name":"Multiverse rules",
+        "description":"Learn how branches, variants, incursions, and cross-universe visitors work before worlds begin to collide.",
+        "items":[
+          {"titleId":"loki-s1","order":7,"priority":"studio-pick","rationale":"Introduces the TVA, variants, branching timelines, and the breakdown of the controlled timeline.","estimatedMinutes":287,"runtimeLabel":"6 episodes · 4h 47m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Loki+season+1"},
+          {"titleId":"loki-s2","order":8,"priority":"studio-pick","rationale":"Completes Loki’s TVA journey and establishes the multiversal structure in place before Doomsday.","estimatedMinutes":297,"runtimeLabel":"6 episodes · 4h 57m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Loki+season+2"},
+          {"titleId":"shang-chi","order":9,"priority":"studio-pick","rationale":"Introduces Shang-Chi and the Ten Rings, one of the unresolved signals carried into the next Avengers era.","estimatedMinutes":132,"runtimeLabel":"2h 12m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Shang-Chi+and+the+Legend+of+the+Ten+Rings"},
+          {"titleId":"spider-man-no-way-home","order":10,"priority":"studio-pick","rationale":"Shows a spell tearing open barriers between screen universes and makes legacy heroes part of the MCU’s present.","estimatedMinutes":148,"runtimeLabel":"2h 28m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Spider-Man+No+Way+Home"},
+          {"titleId":"doctor-strange-multiverse","order":11,"priority":"studio-pick","rationale":"Defines incursions and dreamwalking while demonstrating the danger of one universe colliding with another.","estimatedMinutes":126,"runtimeLabel":"2h 06m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Doctor+Strange+in+the+Multiverse+of+Madness"}
+        ]
+      },
+      {
+        "id":"new-world-teams",
+        "name":"The new board",
+        "description":"Catch up with the teams, nations, and heroes positioned to answer the next global and multiversal crisis.",
+        "items":[
+          {"titleId":"black-panther-wakanda-forever","order":12,"priority":"studio-pick","rationale":"Places Shuri, M’Baku, Wakanda, Namor, and Talokan in the post-T’Challa world.","estimatedMinutes":161,"runtimeLabel":"2h 41m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Black+Panther+Wakanda+Forever"},
+          {"titleId":"captain-america-brave-new-world","order":13,"priority":"studio-pick","rationale":"Establishes Sam Wilson’s Captain America and the geopolitical conditions surrounding the next Avengers response.","estimatedMinutes":118,"runtimeLabel":"1h 58m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Captain+America+Brave+New+World"},
+          {"titleId":"deadpool-wolverine","order":14,"priority":"studio-pick","rationale":"Connects the TVA to the Fox mutant legacy and makes cross-universe survival a character-level problem.","estimatedMinutes":128,"runtimeLabel":"2h 08m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Deadpool+and+Wolverine"},
+          {"titleId":"thunderbolts","order":15,"priority":"studio-pick","rationale":"Assembles the New Avengers and defines the uneasy team entering the Doomsday crisis.","estimatedMinutes":127,"runtimeLabel":"2h 07m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+Thunderbolts+2025"},
+          {"titleId":"fantastic-four-first-steps","order":16,"priority":"studio-pick","rationale":"Introduces the Fantastic Four, their retro-futurist home universe, and the family central to Doom’s arrival.","estimatedMinutes":115,"runtimeLabel":"1h 55m","countsTowardCoreRuntime":true,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+The+Fantastic+Four+First+Steps"}
+        ]
+      },
+      {
+        "id":"animated-mutant-briefing",
+        "name":"Archive bonus: animated mutants",
+        "description":"Not part of Disney+’s 15-project studio list, but the fastest route to the X-Men’s animated vocabulary and the ’97 revival.",
+        "items":[
+          {"titleId":"x-men-animated","order":17,"priority":"archive-bonus","rationale":"The 1990s series supplies the visual language, team dynamics, and multiverse stories that X-Men ’97 directly continues.","estimatedMinutes":132,"runtimeLabel":"6 episodes · about 2h 12m","selectionNote":"Watch: Night of the Sentinels I–II, Days of Future Past I–II, and One Man’s Worth I–II.","countsTowardCoreRuntime":false,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+X-Men+The+Animated+Series+1992"},
+          {"titleId":"x-men-97","order":18,"priority":"archive-bonus","rationale":"A concise modern refresher on mutant politics, team relationships, and catastrophic threats across time.","estimatedMinutes":360,"runtimeLabel":"Season 1 · about 6h","selectionNote":"Watch the complete first season after the six selected 1990s episodes.","countsTowardCoreRuntime":false,"watchSearchUrl":"https://www.google.com/search?q=where+to+watch+X-Men+97+season+1"}
+        ]
+      }
+    ]
+  }
+]

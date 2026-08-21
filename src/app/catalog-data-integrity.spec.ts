@@ -4,12 +4,14 @@ import collectionsJson from '../../public/data/collections.json';
 import phasesJson from '../../public/data/phases.json';
 import storyArcsJson from '../../public/data/story-arcs.json';
 import titlesJson from '../../public/data/titles.json';
-import type { Character, Phase, TitleRecord } from './models';
+import watchGuidesJson from '../../public/data/watch-guides.json';
+import type { Character, Phase, TitleRecord, WatchGuide } from './models';
 
 const titles = titlesJson as unknown as TitleRecord[];
 const characters = charactersJson as Character[];
 const phases = phasesJson as Phase[];
 const titleById = new Map(titles.map((title) => [title.id,title]));
+const watchGuides = watchGuidesJson as WatchGuide[];
 
 describe('catalog data integrity', () => {
   it('has unique stable IDs and a complete release sequence', () => {
@@ -97,5 +99,21 @@ describe('catalog data integrity', () => {
     expect(announcedFilms).toHaveLength(3);
     expect(announcedFilms.every(({links}) => links.some(({provider,kind,resolution,url}) => provider === 'Google Maps' && kind === 'theater' && resolution === 'live-search' && url.startsWith('https://www.google.com/maps/search/')))).toBe(true);
     expect(titleById.get('spider-man-brand-new-day')?.links.some(({kind,resolution}) => kind === 'theater' && resolution === 'live-search')).toBe(true);
+  });
+
+  it('publishes a complete, ordered Doomsday protocol with valid title references', () => {
+    const guide = watchGuides.find(({targetTitleId}) => targetTitleId === 'avengers-doomsday');
+    expect(guide).toBeDefined();
+    const items = guide!.sections.flatMap(({items}) => items);
+    const core = items.filter(({countsTowardCoreRuntime}) => countsTowardCoreRuntime);
+    expect(items.map(({order}) => order)).toEqual(Array.from({length:items.length},(_,index) => index + 1));
+    expect(new Set(items.map(({titleId}) => titleId)).size).toBe(items.length);
+    expect(items.every(({titleId}) => titleById.has(titleId))).toBe(true);
+    expect(core).toHaveLength(16);
+    expect(core.reduce((sum,{estimatedMinutes}) => sum + estimatedMinutes,0)).toBe(guide!.estimatedCoreMinutes);
+    expect(guide!.estimatedCoreMinutes).toBeGreaterThanOrEqual(40 * 60);
+    expect(guide!.estimatedCoreMinutes).toBeLessThan(42 * 60);
+    expect(items.every(({watchSearchUrl}) => watchSearchUrl.startsWith('https://www.google.com/search?q=where+to+watch+'))).toBe(true);
+    expect(items.filter(({priority}) => priority === 'archive-bonus').map(({titleId}) => titleId)).toEqual(['x-men-animated','x-men-97']);
   });
 });

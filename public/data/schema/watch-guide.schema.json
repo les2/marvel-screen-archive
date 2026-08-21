@@ -1,0 +1,42 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Marvel Archive watch guide",
+  "type":"array",
+  "items":{
+    "type":"object",
+    "required":["id","targetTitleId","name","version","updatedAt","estimatedCoreMinutes","sourceLinks","sections"],
+    "properties":{
+      "id":{"type":"string"},
+      "targetTitleId":{"type":"string"},
+      "name":{"type":"string"},
+      "version":{"type":"string"},
+      "updatedAt":{"type":"string","format":"date-time"},
+      "estimatedCoreMinutes":{"type":"integer","minimum":1},
+      "sourceLinks":{"type":"array"},
+      "sections":{
+        "type":"array",
+        "items":{
+          "type":"object",
+          "required":["id","name","description","items"],
+          "properties":{
+            "items":{
+              "type":"array",
+              "items":{
+                "type":"object",
+                "required":["titleId","order","priority","rationale","estimatedMinutes","runtimeLabel","countsTowardCoreRuntime","watchSearchUrl"],
+                "properties":{
+                  "titleId":{"type":"string"},
+                  "order":{"type":"integer","minimum":1},
+                  "priority":{"enum":["studio-pick","archive-bonus"]},
+                  "estimatedMinutes":{"type":"integer","minimum":1},
+                  "countsTowardCoreRuntime":{"type":"boolean"},
+                  "watchSearchUrl":{"type":"string","format":"uri"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

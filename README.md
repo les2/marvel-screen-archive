@@ -9,6 +9,7 @@ Marvel Archive is a public, browser-only screen chronology explorer and open JSO
 - Context-aware universe, saga, and phase filters with unavailable branches disabled
 - Fast button controls for format and release-date, universe-timeline, or alphabetical order
 - Short context blurbs for universes, sagas, phases, story arcs, and collections
+- A featured 41-hour Countdown Protocol for *Avengers: Doomsday*, with an ordered studio route, optional 1990s animated X-Men briefing, and private device-local checkmarks
 - A distinct, clearly labeled AI-assisted editorial description for every catalog title
 - Ordered collections for trilogies, sagas, teams, and series
 - More than 1,400 character profiles and 2,300 classified appearances, with `lead`, `major`, `supporting`, `minor`, and `cameo` roles

@@ -1,9 +1,9 @@
-const CACHE = 'marvel-archive-v0.4.0';
+const CACHE = 'marvel-archive-v0.5.0';
 const CORE = [
   '/index.html', '__MAIN_ASSET__', '__STYLE_ASSET__', '/manifest.webmanifest', '/favicon.svg', '/og.png',
-  '/data/metadata.json', '/data/titles.json', '/data/characters.json', '/data/universes.json', '/data/sagas.json', '/data/phases.json', '/data/story-arcs.json',
+  '/data/metadata.json', '/data/titles.json', '/data/characters.json', '/data/universes.json', '/data/sagas.json', '/data/phases.json', '/data/story-arcs.json', '/data/watch-guides.json',
   '/data/collections.json', '/data/appearances.json', '/data/credit-scenes.json', '/data/sources.json',
-  '/data/schema/metadata.schema.json', '/data/schema/title.schema.json', '/data/schema/character.schema.json', '/data/schema/universe.schema.json'
+  '/data/schema/metadata.schema.json', '/data/schema/title.schema.json', '/data/schema/character.schema.json', '/data/schema/universe.schema.json', '/data/schema/watch-guide.schema.json'
 ];
 
 self.addEventListener('install', (event) => {

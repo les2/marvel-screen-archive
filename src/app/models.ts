@@ -23,3 +23,34 @@ export interface Collection { id:string; name:string; kind:'trilogy'|'series'|'s
 export interface Saga { id:string; name:string; universeId:string; phases?:number[]; description:string; }
 export interface Phase { id:string; name:string; number:number; sagaId:string; status:'completed'|'current'|'announced'; startDate:string; endDate?:string; description:string; }
 export interface StoryArc { id:string; name:string; sagaId:string; description:string; }
+export type WatchGuidePriority = 'studio-pick' | 'archive-bonus';
+export interface WatchGuideItem {
+  titleId:string;
+  order:number;
+  priority:WatchGuidePriority;
+  rationale:string;
+  estimatedMinutes:number;
+  runtimeLabel:string;
+  selectionNote?:string;
+  countsTowardCoreRuntime:boolean;
+  watchSearchUrl:string;
+}
+export interface WatchGuideSection {
+  id:string;
+  name:string;
+  description:string;
+  items:WatchGuideItem[];
+}
+export interface WatchGuide {
+  id:string;
+  targetTitleId:string;
+  name:string;
+  eyebrow:string;
+  description:string;
+  version:string;
+  updatedAt:string;
+  status:'featured'|'published';
+  estimatedCoreMinutes:number;
+  sourceLinks:Array<{sourceId:string;label:string;url:string}>;
+  sections:WatchGuideSection[];
+}

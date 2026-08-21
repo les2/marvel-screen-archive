@@ -1,7 +1,7 @@
 <div class="app-shell">
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
-    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
+    <nav class="header-nav" aria-label="Primary"><a href="#doomsday-protocol">Doomsday protocol</a><a href="#catalog">Catalog</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
   </header>
 
   <main id="top">
@@ -20,6 +20,43 @@
       <div><strong>{{ universes().length }}</strong><span>screen universes</span></div>
       <div><strong>{{ characters().length }}</strong><span>character records</span></div>
       <div><strong>{{ creditSceneCount() }}</strong><span>credit scenes mapped</span></div>
+    </section>
+
+    <section class="watch-guide" id="doomsday-protocol" *ngIf="activeGuide() as guide" aria-labelledby="watch-guide-title">
+      <div class="guide-orbit" aria-hidden="true"></div>
+      <div class="section-kicker guide-kicker"><span>00 / {{ guide.eyebrow }}</span><span>Private on-device progress</span></div>
+      <div class="guide-intro">
+        <div>
+          <span class="guide-target">Before {{ titleFor(guide.targetTitleId)?.title }}</span>
+          <h2 id="watch-guide-title">COUNTDOWN<br><em>PROTOCOL.</em></h2>
+        </div>
+        <div class="guide-brief">
+          <p>{{ guide.description }}</p>
+          <div class="guide-facts"><span><strong>{{ coreGuideItems().length }}</strong> chapters</span><span><strong>{{ formatMinutes(guide.estimatedCoreMinutes) }}</strong> studio route</span><span><strong>+2</strong> archive bonuses</span></div>
+          <a class="guide-jump" href="#protocol-checklist">Open the mission file <span>↓</span></a>
+        </div>
+      </div>
+
+      <div class="guide-progress" aria-live="polite">
+        <div class="progress-copy"><span>Your checkpoint</span><strong>{{ guideWatchedCount() }} / {{ guideItems().length }} complete</strong><small>{{ guideCoreWatchedCount() }} of {{ coreGuideItems().length }} studio chapters · {{ formatMinutes(guideWatchedMinutes()) }} watched</small></div>
+        <div class="progress-track" role="progressbar" [attr.aria-valuenow]="guideProgressPercent()" aria-valuemin="0" aria-valuemax="100"><i [style.width.%]="guideProgressPercent()"></i></div>
+        <div class="progress-actions"><button type="button" (click)="exportGuideProgress()">Download snapshot</button><button type="button" (click)="clearGuideProgress()">Clear checks</button></div>
+      </div>
+
+      <div class="protocol-checklist" id="protocol-checklist">
+        <section class="protocol-section" *ngFor="let section of guide.sections">
+          <div class="protocol-section-head"><div><span>{{ section.id === 'animated-mutant-briefing' ? 'Optional route' : 'Studio route' }}</span><h3>{{ section.name }}</h3></div><p>{{ section.description }}</p></div>
+          <ol>
+            <li class="protocol-item" *ngFor="let item of section.items" [class.watched]="isGuideItemWatched(item.titleId)" [class.bonus]="item.priority === 'archive-bonus'">
+              <label class="protocol-check"><input type="checkbox" [checked]="isGuideItemWatched(item.titleId)" (change)="toggleGuideItem(item,$any($event.target).checked)"><span aria-hidden="true"></span><span class="sr-only">Mark {{ titleFor(item.titleId)?.title }} watched</span></label>
+              <button class="protocol-title" type="button" (click)="openTitleById(item.titleId)"><span>{{ item.order.toString().padStart(2,'0') }} · {{ titleFor(item.titleId)?.mediaType }}</span><strong>{{ titleFor(item.titleId)?.title }}</strong><small>{{ item.runtimeLabel }}</small></button>
+              <div class="protocol-reason"><p>{{ item.rationale }}</p><em *ngIf="item.selectionNote">{{ item.selectionNote }}</em></div>
+              <div class="protocol-links"><a [href]="item.watchSearchUrl" target="_blank" rel="noopener">Find a stream ↗</a><a *ngIf="directGuideLink(item) as link" [href]="link.url" target="_blank" rel="noopener">{{ link.provider }} direct ↗</a></div>
+            </li>
+          </ol>
+        </section>
+      </div>
+      <div class="guide-source"><p>Studio route follows Disney+’s 15-project Countdown collection; Loki is tracked as two season entities. Animated picks are independent archive additions.</p><div><a *ngFor="let source of guide.sourceLinks" [href]="source.url" target="_blank" rel="noopener">{{ source.label }} ↗</a></div></div>
     </section>
 
     <section class="catalog" id="catalog">
@@ -76,7 +113,7 @@
         <div><h2>The archive<br>belongs to <em>everyone.</em></h2></div>
         <div class="data-copy"><p>No account. No server. No tracking. The catalog ships as versioned JSON, caches for offline use, and is shaped for contribution.</p><a href="/data/metadata.json" target="_blank">Inspect dataset manifest <span>↗</span></a></div>
       </div>
-      <div class="schema-strip"><span>titles.json</span><span>characters.json</span><span>universes.json</span><span>sagas.json</span><span>phases.json</span><span>story-arcs.json</span></div>
+      <div class="schema-strip"><span>titles.json</span><span>characters.json</span><span>universes.json</span><span>sagas.json</span><span>phases.json</span><span>story-arcs.json</span><span>watch-guides.json</span></div>
     </section>
   </main>
 
@@ -87,7 +124,7 @@
 <aside class="drawer" [class.open]="selectedTitle()" [attr.aria-hidden]="!selectedTitle()" aria-label="Title details">
   <ng-container *ngIf="selectedTitle() as title">
     <div class="drawer-head"><span>{{ title.mediaType }} / {{ title.releaseDate.slice(0, 4) }}<ng-container *ngIf="phaseFor(title.phaseId) as phase"> / {{ phase.name }}</ng-container></span><button (click)="closeTitle()" aria-label="Close details">×</button></div>
-    <div class="drawer-hero"><div class="drawer-labels"><span class="drawer-index">{{ title.releaseOrder.toString().padStart(2, '0') }}</span><span>{{ title.descriptionSource === 'ai-assisted' ? 'AI-assisted editorial summary' : (title.dataQuality === 'verified-core' ? 'Core detail verified' : 'Catalog record') }}</span></div><h2>{{ title.title }}</h2><p>{{ title.editorialDescription || title.synopsis }}</p></div>
+    <div class="drawer-hero"><div class="drawer-labels"><span class="drawer-index">{{ title.releaseOrder.toString().padStart(2, '0') }}</span><span>{{ title.descriptionSource === 'ai-assisted' ? 'AI-assisted editorial summary' : (title.dataQuality === 'verified-core' ? 'Core detail verified' : 'Catalog record') }}</span></div><h2>{{ title.title }}</h2><p>{{ title.editorialDescription || title.synopsis }}</p><a class="drawer-guide-link" *ngIf="guideForTitle(title.id)" href="#doomsday-protocol" (click)="closeTitle()">Open Countdown Protocol ↗</a></div>
     <div class="detail-ranks"><div><span>Release</span><strong>#{{ title.releaseOrder }}</strong></div><div><span>Timeline</span><strong>{{ title.timelineOrder ? '#' + title.timelineOrder : '—' }}</strong></div><div><span>Phase</span><strong>{{ phaseFor(title.phaseId)?.name || '—' }}</strong></div><div><span>Saga</span><strong>{{ sagaFor(title.sagaIds[0])?.name || '—' }}</strong></div></div>
     <section class="drawer-section" *ngIf="title.appearances.length"><div class="drawer-section-heading"><h3>Characters</h3><span>{{ title.appearances.length }} credited roles</span></div><p class="section-note">Roles are classified from credited billing order. Open a character for its AI-assisted profile and coverage details.</p><details class="character-profile" *ngFor="let item of title.appearances"><summary *ngIf="characterFor(item.characterId) as character"><div><strong>{{ character.name }}</strong><span>{{ character.aliases.slice(0, 4).join(' · ') }}</span></div><span class="character-badges"><em>{{ item.role }}</em><small *ngIf="item.roleConfidence === 'inferred'">inferred</small></span></summary><div class="character-profile-body" *ngIf="characterFor(item.characterId) as character"><p>{{ character.description }}</p><div class="character-facts"><span><b>{{ character.appearanceCount }}</b> archive {{ character.appearanceCount === 1 ? 'appearance' : 'appearances' }}</span><span><b>{{ character.comicOrigin }}</b> comic origin</span><span *ngIf="item.billingOrder"><b>#{{ item.billingOrder }}</b> credited performer order</span></div><div class="character-links" *ngIf="character.officialUrl || character.wikipediaUrl"><a *ngIf="character.officialUrl" [href]="character.officialUrl" target="_blank" rel="noopener">Marvel profile ↗</a><a *ngIf="character.wikipediaUrl" [href]="character.wikipediaUrl" target="_blank" rel="noopener">Wikipedia ↗</a></div><small class="source-note">{{ character.profileConfidence === 'curated' ? 'Identity aliases curated; profile copy AI-assisted.' : 'Identity and role inferred from public screen credits; profile copy AI-assisted.' }}</small></div></details></section>
     <section class="drawer-section"><h3>After the credits</h3><div class="credit-scene" *ngFor="let scene of title.creditScenes"><span>{{ scene.position }}</span><p>{{ scene.summary }}</p></div><p class="muted" *ngIf="!title.creditScenes.length">No mid- or post-credit scene recorded.</p></section>

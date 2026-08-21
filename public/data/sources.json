@@ -8,5 +8,8 @@
   {"id":"google-maps-urls","name":"Google Maps URLs","url":"https://developers.google.com/maps/documentation/urls/get-started","authority":"official","usedFor":["keyless location-aware theater discovery"]},
   {"id":"apple-search-api","name":"Apple Search API","url":"https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/","authority":"official","usedFor":["storefront-link feasibility"]},
   {"id":"movieglu","name":"MovieGlu API","url":"https://developer.movieglu.com/","authority":"official","usedFor":["future licensed real-time showtimes integration"]},
-  {"id":"amazon-creators-api","name":"Amazon Creators API","url":"https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction","authority":"official","usedFor":["future authenticated affiliate product links"]}
+  {"id":"amazon-creators-api","name":"Amazon Creators API","url":"https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction","authority":"official","usedFor":["future authenticated affiliate product links"]},
+  {"id":"disney-plus-countdown","name":"Disney+ Countdown to Avengers: Doomsday collection","url":"https://www.disneyplus.com/","authority":"official","usedFor":["Doomsday studio watch-guide membership"]},
+  {"id":"gamesradar-doomsday-countdown","name":"Disney has released a list of essential Marvel movies to watch before Avengers: Doomsday","url":"https://www.gamesradar.com/entertainment/marvel-movies/disney-has-released-a-list-of-essential-marvel-movies-to-watch-before-avengers-doomsday-and-fans-are-debating-the-most-confusing-omissions/","authority":"reference","usedFor":["publicly accessible transcription of the Disney+ Countdown collection"]},
+  {"id":"marvel-doomsday","name":"Avengers: Doomsday","url":"https://www.marvel.com/movies/avengers-kang-dynasty","authority":"official","usedFor":["target release date","returning teams and characters"]}
 ]

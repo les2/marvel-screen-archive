@@ -9,6 +9,7 @@ The browser loads versioned JSON documents, then mirrors the primary entity sets
 - `sagas`: top-level eras inside a universe. For the MCU, the Infinity Saga contains Phases One–Three and the Multiverse Saga contains Phases Four–Six.
 - `phases`: numbered release-program groups that belong to a saga. Phase Six is the current phase of the Multiverse Saga.
 - `story-arcs`: overlapping thematic paths such as the Infinity Stones, Thanos/Endgame, multiversal incursions, or the road to Doomsday and Secret Wars. These are intentionally separate from official saga and phase membership.
+- `watch-guides`: ordered, versioned preparation routes that reference title IDs. Each item records editorial rationale, estimated runtime, source/bonus priority, an always-available watch-discovery URL, and whether it contributes to the core route runtime.
 - `collections`: ordered title groups, including trilogies, character series, teams, and studio eras.
 - `characters`: canonical or credited screen identity, aliases, continuity membership, first/latest appearance, appearance count, AI-assisted profile, comic-origin confidence, and public reference/artwork links.
 - `appearances`: a derived many-to-many relation between titles and characters, with `lead`, `major`, `supporting`, `minor`, or `cameo` role, credited performer order, source scope, and verified/inferred confidence.
@@ -16,6 +17,12 @@ The browser loads versioned JSON documents, then mirrors the primary entity sets
 - `sources`: public provenance used to verify dates, identifiers, availability, and official links.
 
 Every relation uses stable string IDs instead of nesting copies. Derived previous/next links are materialized in `titles.json` so a static client can navigate without recomputing the full graph.
+
+## Watch guides and private progress
+
+`watch-guides.json` can hold a preparation route for any target title. The first published route, `doomsday-protocol`, models Disney+’s 15-project countdown as 16 title references because the archive stores each Loki season separately. Optional editorial additions are labeled `archive-bonus` and excluded from `estimatedCoreMinutes`.
+
+Checks are stored only in the visitor’s browser as a versioned progress snapshot. They are never written to the public dataset or sent to a server. A user can download the snapshot as JSON for personal backup.
 
 ## Character coverage and confidence
 
