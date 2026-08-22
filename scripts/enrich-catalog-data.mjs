@@ -37,7 +37,7 @@ const curatedIdentities = {
   'tony-stark':['Tony Stark','Iron Man'],'steve-rogers':['Steve Rogers','Captain America'],'thor-odinson':['Thor Odinson','Thor'],'natasha-romanoff':['Natasha Romanoff','Black Widow','Natalie Rushman'],
   'bruce-banner':['Bruce Banner','Hulk'],'clint-barton':['Clint Barton','Hawkeye','Ronin'],'peter-parker':['Peter Parker','Spider-Man','Spider Man'],'wanda-maximoff':['Wanda Maximoff','Scarlet Witch'],
   'loki':['Loki Laufeyson','Loki','God of Mischief'],'tchalla':["T'Challa",'Black Panther'],'carol-danvers':['Carol Danvers','Captain Marvel'],'stephen-strange':['Stephen Strange','Doctor Strange','Dr. Stephen Strange'],
-  'miles-morales':['Miles Morales'],'logan':['Logan','Wolverine','James Howlett'],'matt-murdock':['Matt Murdock','Daredevil'],'reed-richards':['Reed Richards','Mr. Fantastic','Mister Fantastic'],'sue-storm':['Sue Storm','Sue Richards','Invisible Woman','Invisible Girl'],
+  'miles-morales':['Miles Morales'],'logan':['Logan','Wolverine','James Howlett'],'matt-murdock':['Matt Murdock','Daredevil'],'reed-richards':['Reed Richards','Mr. Fantastic','Mister Fantastic','Dr. Reed Richards'],'sue-storm':['Sue Storm','Sue Richards','Invisible Woman','Invisible Girl'],
   'johnny-storm':['Johnny Storm','Human Torch'],'ben-grimm':['Ben Grimm','The Thing','Thing'],'victor-von-doom':['Victor Von Doom','Doctor Doom','Dr. Doom'],'charles-xavier':['Charles Xavier','Professor X','Professor Charles Xavier'],
   'scott-summers':['Scott Summers','Cyclops'],'jean-grey':['Jean Grey','Phoenix','Dark Phoenix'],'ororo-munroe':['Ororo Munroe','Storm'],'hank-mccoy':['Hank McCoy','Henry McCoy','Beast','Dr. Henry Hank McCoy'],
   'anna-marie':['Anna Marie','Rogue'],'remy-lebeau':['Remy LeBeau','Gambit'],'jubilation-lee':['Jubilation Lee','Jubilee'],'erik-lehnsherr':['Erik Lehnsherr','Erik Magnus Lehnsherr','Magneto','Magnus'],
@@ -54,6 +54,10 @@ const curatedIdentities = {
   'kate-bishop':['Kate Bishop','Hawkeye'],'yelena-belova':['Yelena Belova','Black Widow'],'john-walker':['John Walker','U.S. Agent','US Agent'],'riri-williams':['Riri Williams','Ironheart'],
   'jessica-jones':['Jessica Jones'],'luke-cage':['Luke Cage','Carl Lucas'],'danny-rand':['Danny Rand','Iron Fist'],'blade':['Blade','Eric Brooks'],'johnny-blaze':['Johnny Blaze','Ghost Rider'],
   'robbie-reyes':['Robbie Reyes','Ghost Rider'],'franklin-nelson':['Franklin Foggy Nelson','Foggy Nelson'],'karen-page':['Karen Page'],'may-parker':['May Parker','Aunt May'],'ben-parker':['Ben Parker','Uncle Ben']
+};
+const canonicalCharacterIds = {
+  'mister-fantastic':'reed-richards',
+  'dr-reed-richards':'reed-richards'
 };
 const curatedExistingCharacters = existingCharacters.filter(({id,officialUrl,wikipediaUrl}) => Boolean(curatedIdentities[id] || officialUrl || wikipediaUrl));
 
@@ -169,7 +173,13 @@ function characterIdFor(name) {
 }
 const rawByTitle = Map.groupBy(rawCredits,(credit) => credit.titleId);
 for (const title of titles) {
-  const original = new Map(title.appearances.filter(({sourceId}) => sourceId !== 'imdb-non-commercial').map((appearance) => [appearance.characterId,{...appearance,roleConfidence:'verified',sourceId:'editorial-core'}]));
+  const original = new Map();
+  for (const appearance of title.appearances.filter(({sourceId}) => sourceId !== 'imdb-non-commercial')) {
+    const characterId = canonicalCharacterIds[appearance.characterId] ?? appearance.characterId;
+    const candidate = {...appearance,characterId,roleConfidence:'verified',sourceId:'editorial-core'};
+    const existing = original.get(characterId);
+    if (!existing || (candidate.billingOrder ?? Number.MAX_SAFE_INTEGER) < (existing.billingOrder ?? Number.MAX_SAFE_INTEGER)) original.set(characterId,candidate);
+  }
   const titleCredits = rawByTitle.get(title.id) ?? [];
   const performerRank = new Map([...new Set([...titleCredits].sort((a,b) => a.ordering-b.ordering).map(({nconst}) => nconst))].map((nconst,index) => [nconst,index + 1]));
   const firstIdentityByPerformer = new Map();

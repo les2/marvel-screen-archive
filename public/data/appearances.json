@@ -2970,9 +2970,9 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-1994:dr-reed-richards:0",
+    "id": "fantastic-four-1994:reed-richards:0",
     "titleId": "fantastic-four-1994",
-    "characterId": "dr-reed-richards",
+    "characterId": "reed-richards",
     "role": "lead",
     "billingOrder": 1,
     "roleConfidence": "verified",
@@ -22616,17 +22616,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:mister-fantastic:1",
-    "titleId": "fantastic-four-first-steps",
-    "characterId": "mister-fantastic",
-    "role": "lead",
-    "billingOrder": 2,
-    "roleConfidence": "verified",
-    "sourceId": "editorial-core",
-    "sourceScope": "title"
-  },
-  {
-    "id": "fantastic-four-first-steps:sue-storm:2",
+    "id": "fantastic-four-first-steps:sue-storm:1",
     "titleId": "fantastic-four-first-steps",
     "characterId": "sue-storm",
     "role": "major",
@@ -22636,7 +22626,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:ben-grimm:3",
+    "id": "fantastic-four-first-steps:ben-grimm:2",
     "titleId": "fantastic-four-first-steps",
     "characterId": "ben-grimm",
     "role": "major",
@@ -22646,7 +22636,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:johnny-storm:4",
+    "id": "fantastic-four-first-steps:johnny-storm:3",
     "titleId": "fantastic-four-first-steps",
     "characterId": "johnny-storm",
     "role": "supporting",
@@ -22656,7 +22646,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:galactus:5",
+    "id": "fantastic-four-first-steps:galactus:4",
     "titleId": "fantastic-four-first-steps",
     "characterId": "galactus",
     "role": "supporting",
@@ -22666,7 +22656,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:shalla-bal:6",
+    "id": "fantastic-four-first-steps:shalla-bal:5",
     "titleId": "fantastic-four-first-steps",
     "characterId": "shalla-bal",
     "role": "supporting",
@@ -22676,7 +22666,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:silver-surfer:7",
+    "id": "fantastic-four-first-steps:silver-surfer:6",
     "titleId": "fantastic-four-first-steps",
     "characterId": "silver-surfer",
     "role": "minor",
@@ -22686,7 +22676,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:rachel-rozman:8",
+    "id": "fantastic-four-first-steps:rachel-rozman:7",
     "titleId": "fantastic-four-first-steps",
     "characterId": "rachel-rozman",
     "role": "minor",
@@ -22696,7 +22686,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:harvey-elder:9",
+    "id": "fantastic-four-first-steps:harvey-elder:8",
     "titleId": "fantastic-four-first-steps",
     "characterId": "harvey-elder",
     "role": "minor",
@@ -22706,7 +22696,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:mole-man:10",
+    "id": "fantastic-four-first-steps:mole-man:9",
     "titleId": "fantastic-four-first-steps",
     "characterId": "mole-man",
     "role": "minor",
@@ -22716,7 +22706,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:lynne-nichols:11",
+    "id": "fantastic-four-first-steps:lynne-nichols:10",
     "titleId": "fantastic-four-first-steps",
     "characterId": "lynne-nichols",
     "role": "minor",
@@ -22726,7 +22716,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:f4-chief-of-staff:12",
+    "id": "fantastic-four-first-steps:f4-chief-of-staff:11",
     "titleId": "fantastic-four-first-steps",
     "characterId": "f4-chief-of-staff",
     "role": "minor",
@@ -22736,7 +22726,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "fantastic-four-first-steps:ted-gilbert:13",
+    "id": "fantastic-four-first-steps:ted-gilbert:12",
     "titleId": "fantastic-four-first-steps",
     "characterId": "ted-gilbert",
     "role": "minor",
@@ -23346,17 +23336,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:mister-fantastic:2",
-    "titleId": "avengers-doomsday",
-    "characterId": "mister-fantastic",
-    "role": "major",
-    "billingOrder": 4,
-    "roleConfidence": "verified",
-    "sourceId": "editorial-core",
-    "sourceScope": "title"
-  },
-  {
-    "id": "avengers-doomsday:thor-odinson:3",
+    "id": "avengers-doomsday:thor-odinson:2",
     "titleId": "avengers-doomsday",
     "characterId": "thor-odinson",
     "role": "major",
@@ -23366,7 +23346,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:sue-storm:4",
+    "id": "avengers-doomsday:sue-storm:3",
     "titleId": "avengers-doomsday",
     "characterId": "sue-storm",
     "role": "supporting",
@@ -23376,7 +23356,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:sam-wilson:5",
+    "id": "avengers-doomsday:sam-wilson:4",
     "titleId": "avengers-doomsday",
     "characterId": "sam-wilson",
     "role": "supporting",
@@ -23386,7 +23366,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:steve-rogers:6",
+    "id": "avengers-doomsday:steve-rogers:5",
     "titleId": "avengers-doomsday",
     "characterId": "steve-rogers",
     "role": "supporting",
@@ -23396,7 +23376,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:bucky-barnes:7",
+    "id": "avengers-doomsday:bucky-barnes:6",
     "titleId": "avengers-doomsday",
     "characterId": "bucky-barnes",
     "role": "supporting",
@@ -23406,7 +23386,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:ben-grimm:8",
+    "id": "avengers-doomsday:ben-grimm:7",
     "titleId": "avengers-doomsday",
     "characterId": "ben-grimm",
     "role": "minor",
@@ -23416,7 +23396,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:shang-chi:9",
+    "id": "avengers-doomsday:shang-chi:8",
     "titleId": "avengers-doomsday",
     "characterId": "shang-chi",
     "role": "minor",
@@ -23426,7 +23406,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:yelena-belova:10",
+    "id": "avengers-doomsday:yelena-belova:9",
     "titleId": "avengers-doomsday",
     "characterId": "yelena-belova",
     "role": "minor",
@@ -23436,7 +23416,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:robert-reynolds:11",
+    "id": "avengers-doomsday:robert-reynolds:10",
     "titleId": "avengers-doomsday",
     "characterId": "robert-reynolds",
     "role": "minor",
@@ -23446,7 +23426,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-doomsday:sentry:12",
+    "id": "avengers-doomsday:sentry:11",
     "titleId": "avengers-doomsday",
     "characterId": "sentry",
     "role": "minor",
@@ -23596,17 +23576,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:mister-fantastic:2",
-    "titleId": "avengers-secret-wars",
-    "characterId": "mister-fantastic",
-    "role": "major",
-    "billingOrder": 4,
-    "roleConfidence": "verified",
-    "sourceId": "editorial-core",
-    "sourceScope": "title"
-  },
-  {
-    "id": "avengers-secret-wars:sue-storm:3",
+    "id": "avengers-secret-wars:sue-storm:2",
     "titleId": "avengers-secret-wars",
     "characterId": "sue-storm",
     "role": "major",
@@ -23616,7 +23586,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:ben-grimm:4",
+    "id": "avengers-secret-wars:ben-grimm:3",
     "titleId": "avengers-secret-wars",
     "characterId": "ben-grimm",
     "role": "supporting",
@@ -23626,7 +23596,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:johnny-storm:5",
+    "id": "avengers-secret-wars:johnny-storm:4",
     "titleId": "avengers-secret-wars",
     "characterId": "johnny-storm",
     "role": "supporting",
@@ -23636,7 +23606,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:john-walker:6",
+    "id": "avengers-secret-wars:john-walker:5",
     "titleId": "avengers-secret-wars",
     "characterId": "john-walker",
     "role": "minor",
@@ -23646,7 +23616,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:kamala-khan:7",
+    "id": "avengers-secret-wars:kamala-khan:6",
     "titleId": "avengers-secret-wars",
     "characterId": "kamala-khan",
     "role": "minor",
@@ -23656,7 +23626,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:sam-wilson:8",
+    "id": "avengers-secret-wars:sam-wilson:7",
     "titleId": "avengers-secret-wars",
     "characterId": "sam-wilson",
     "role": "minor",
@@ -23666,7 +23636,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:steve-rogers:9",
+    "id": "avengers-secret-wars:steve-rogers:8",
     "titleId": "avengers-secret-wars",
     "characterId": "steve-rogers",
     "role": "minor",
@@ -23676,7 +23646,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:wong:10",
+    "id": "avengers-secret-wars:wong:9",
     "titleId": "avengers-secret-wars",
     "characterId": "wong",
     "role": "minor",
@@ -23686,7 +23656,7 @@
     "sourceScope": "title"
   },
   {
-    "id": "avengers-secret-wars:america-chavez:11",
+    "id": "avengers-secret-wars:america-chavez:10",
     "titleId": "avengers-secret-wars",
     "characterId": "america-chavez",
     "role": "minor",

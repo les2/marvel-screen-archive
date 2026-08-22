@@ -3767,7 +3767,7 @@
     "releaseOrder": 23,
     "appearances": [
       {
-        "characterId": "dr-reed-richards",
+        "characterId": "reed-richards",
         "role": "lead",
         "billingOrder": 1,
         "roleConfidence": "verified",
@@ -31916,14 +31916,6 @@
         "sourceScope": "title"
       },
       {
-        "characterId": "mister-fantastic",
-        "role": "lead",
-        "billingOrder": 2,
-        "roleConfidence": "verified",
-        "sourceId": "editorial-core",
-        "sourceScope": "title"
-      },
-      {
         "characterId": "sue-storm",
         "role": "major",
         "billingOrder": 3,
@@ -33213,14 +33205,6 @@
         "sourceScope": "title"
       },
       {
-        "characterId": "mister-fantastic",
-        "role": "major",
-        "billingOrder": 4,
-        "roleConfidence": "verified",
-        "sourceId": "editorial-core",
-        "sourceScope": "title"
-      },
-      {
         "characterId": "thor-odinson",
         "role": "major",
         "billingOrder": 5,
@@ -33586,14 +33570,6 @@
         "characterId": "reed-richards",
         "role": "major",
         "billingOrder": 3,
-        "roleConfidence": "verified",
-        "sourceId": "editorial-core",
-        "sourceScope": "title"
-      },
-      {
-        "characterId": "mister-fantastic",
-        "role": "major",
-        "billingOrder": 4,
         "roleConfidence": "verified",
         "sourceId": "editorial-core",
         "sourceScope": "title"

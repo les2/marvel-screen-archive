@@ -41,6 +41,16 @@ describe('catalog data integrity', () => {
     }
   });
 
+  it('keeps civilian names and superhero aliases in one character record', () => {
+    expect(new Set(characters.map(({id}) => id)).size).toBe(characters.length);
+    for (const title of titles) expect(new Set(title.appearances.map(({characterId}) => characterId)).size, title.id).toBe(title.appearances.length);
+    const reedRichards = characters.find(({id}) => id === 'reed-richards');
+    expect(reedRichards?.aliases).toEqual(expect.arrayContaining(['Mister Fantastic','Mr. Fantastic']));
+    expect(reedRichards?.appearanceCount).toBe(12);
+    expect(characters.some(({id}) => id === 'mister-fantastic')).toBe(false);
+    expect(characters.some(({id}) => id === 'dr-reed-richards')).toBe(false);
+  });
+
   it('models all MCU titles as Saga → Phase → Title', () => {
     const mcuTitles = titles.filter(({universeIds}) => universeIds.includes('mcu-616'));
     expect(mcuTitles).toHaveLength(67);

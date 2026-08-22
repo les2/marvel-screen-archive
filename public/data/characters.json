@@ -12991,36 +12991,6 @@
     "profileStatus": "screen-credit-only"
   },
   {
-    "id": "dr-reed-richards",
-    "name": "Dr. Reed Richards",
-    "aliases": [],
-    "description": "Dr. Reed Richards is a lead character credited in The Fantastic Four, the 1994 film in the Marvel Legacy Films continuity. The credit is indexed, but the character’s identity, powers, and affiliations still require independent profile research.",
-    "descriptionSource": "ai-assisted",
-    "universeIds": [
-      "legacy-films"
-    ],
-    "appearanceCount": 1,
-    "firstAppearanceId": "fantastic-four-1994",
-    "latestAppearanceId": "fantastic-four-1994",
-    "primaryRole": "lead",
-    "comicOrigin": "probable",
-    "profileConfidence": "inferred",
-    "sourceIds": [
-      "imdb-non-commercial"
-    ],
-    "performerIds": [
-      "nm0405033"
-    ],
-    "catalogSummary": "1 indexed appearance, from The Fantastic Four (1994). Highest recorded story role: lead.",
-    "characterType": "unknown",
-    "alignment": "unknown",
-    "powerStatus": "unknown",
-    "powers": [],
-    "skills": [],
-    "affiliations": [],
-    "profileStatus": "screen-credit-only"
-  },
-  {
     "id": "dr-reyes",
     "name": "Dr. Reyes",
     "aliases": [],
@@ -29575,44 +29545,6 @@
     "profileStatus": "screen-credit-only"
   },
   {
-    "id": "mister-fantastic",
-    "name": "mister fantastic",
-    "aliases": [],
-    "description": "Reed Richards is Mister Fantastic, leader of the Fantastic Four and one of Marvel’s foremost scientists. Cosmic radiation made his body elastic, while his relentless intellect drives exploration and sometimes dangerous overconfidence.",
-    "descriptionSource": "ai-assisted",
-    "universeIds": [
-      "mcu-616"
-    ],
-    "appearanceCount": 3,
-    "firstAppearanceId": "fantastic-four-first-steps",
-    "latestAppearanceId": "avengers-secret-wars",
-    "primaryRole": "lead",
-    "comicOrigin": "confirmed",
-    "profileConfidence": "curated",
-    "sourceIds": [
-      "imdb-non-commercial",
-      "ai-assisted-character-editorial"
-    ],
-    "performerIds": [],
-    "catalogSummary": "3 indexed appearances, from The Fantastic Four: First Steps (2025) through Avengers: Secret Wars (2027). Highest recorded story role: lead.",
-    "powers": [
-      "Elasticity",
-      "Shape alteration"
-    ],
-    "skills": [
-      "Physics",
-      "Engineering",
-      "Leadership"
-    ],
-    "affiliations": [
-      "Fantastic Four"
-    ],
-    "characterType": "hero",
-    "alignment": "heroic",
-    "powerStatus": "powered",
-    "profileStatus": "researched"
-  },
-  {
     "id": "misty-knight",
     "name": "Misty Knight",
     "aliases": [],
@@ -35519,6 +35451,7 @@
     "id": "reed-richards",
     "name": "Reed Richards",
     "aliases": [
+      "Dr. Reed Richards",
       "Mister Fantastic",
       "Mr. Fantastic"
     ],
@@ -35528,7 +35461,7 @@
       "legacy-films",
       "mcu-616"
     ],
-    "appearanceCount": 11,
+    "appearanceCount": 12,
     "firstAppearanceId": "fantastic-four-1967",
     "latestAppearanceId": "avengers-secret-wars",
     "primaryRole": "lead",
@@ -35541,6 +35474,7 @@
     "performerIds": [
       "nm0596056",
       "nm0730083",
+      "nm0405033",
       "nm0915812",
       "nm0344435",
       "nm0437032",
@@ -35548,7 +35482,7 @@
       "nm1886602",
       "nm0050959"
     ],
-    "catalogSummary": "11 indexed appearances, from Fantastic Four (1967) through Avengers: Secret Wars (2027). Highest recorded story role: lead.",
+    "catalogSummary": "12 indexed appearances, from Fantastic Four (1967) through Avengers: Secret Wars (2027). Highest recorded story role: lead.",
     "powers": [
       "Elasticity",
       "Shape alteration"
