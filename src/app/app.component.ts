@@ -6,6 +6,7 @@ import { CatalogDataService } from './catalog-data.service';
 import { availablePhaseIds, availableSagaIds, compatiblePhaseSelection, filterAndSortTitles, type CatalogSortMode } from './catalog-query';
 import { parseCatalogState, serializeCatalogState } from './catalog-url-state';
 import { createWatchProgressSnapshot, parseWatchProgress, toggleWatchedTitle } from './watch-progress';
+import { watchGuideHash, watchGuideIdFromHash } from './watch-guide-navigation';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
   readonly selectedType = signal('all');
   readonly sortMode = signal<CatalogSortMode>('release');
   readonly selectedTitle = signal<TitleRecord | null>(null);
+  readonly selectedGuide = signal<WatchGuide | null>(null);
   readonly loading = signal(true);
   readonly canInstall = signal(false);
   readonly updateReady = signal(false);
@@ -52,7 +54,8 @@ export class AppComponent implements OnInit {
     query:this.query(), universeId:this.selectedUniverse(), sagaId:this.selectedSaga(), phaseId:this.selectedPhase(), mediaType:this.selectedType(), sortMode:this.sortMode()
   }));
   readonly activeGuide = computed(() => this.watchGuides().find(({status}) => status === 'featured') ?? this.watchGuides()[0]);
-  readonly guideItems = computed(() => this.activeGuide()?.sections.flatMap(({items}) => items) ?? []);
+  readonly currentGuide = computed(() => this.selectedGuide() ?? this.activeGuide());
+  readonly guideItems = computed(() => this.currentGuide()?.sections.flatMap(({items}) => items) ?? []);
   readonly coreGuideItems = computed(() => this.guideItems().filter(({countsTowardCoreRuntime}) => countsTowardCoreRuntime));
   readonly guideWatchedCount = computed(() => this.guideItems().filter(({titleId}) => this.watchedGuideTitleIds().has(titleId)).length);
   readonly guideCoreWatchedCount = computed(() => this.coreGuideItems().filter(({titleId}) => this.watchedGuideTitleIds().has(titleId)).length);
@@ -71,16 +74,19 @@ export class AppComponent implements OnInit {
       this.titles.set(titles); this.universes.set(universes); this.characters.set(characters); this.collections.set(collections); this.sagas.set(sagas); this.phases.set(phases); this.storyArcs.set(storyArcs); this.watchGuides.set(watchGuides);
       this.restoreGuideProgress();
       this.restoreUrlState();
+      this.restoreGuideFromHash();
       this.urlReady.set(true);
     } finally { this.loading.set(false); }
   }
 
   @HostListener('window:keydown', ['$event'])
-  handleShortcut(event: KeyboardEvent): void { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); this.searchInput?.nativeElement.focus(); } if (event.key === 'Escape' && this.selectedTitle()) this.closeTitle(); }
+  handleShortcut(event: KeyboardEvent): void { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); this.searchInput?.nativeElement.focus(); } if (event.key === 'Escape' && this.selectedTitle()) this.closeTitle(); else if (event.key === 'Escape' && this.selectedGuide()) this.closeGuide(); }
   @HostListener('window:beforeinstallprompt', ['$event'])
   handleInstallPrompt(event: Event): void { event.preventDefault(); this.installEvent = event as typeof this.installEvent; this.canInstall.set(true); }
   @HostListener('window:popstate')
   handlePopState(): void { this.restoreUrlState(); }
+  @HostListener('window:hashchange')
+  handleHashChange(): void { this.restoreGuideFromHash(); }
   @HostListener('window:marvel-app-update-ready')
   handleAppUpdateReady(): void { this.updateReady.set(true); }
   async install(): Promise<void> { if (!this.installEvent) return; await this.installEvent.prompt(); await this.installEvent.userChoice; this.installEvent = null; this.canInstall.set(false); }
@@ -114,7 +120,7 @@ export class AppComponent implements OnInit {
     this.persistGuideProgress();
   }
   exportGuideProgress(): void {
-    const guide = this.activeGuide(); if (!guide) return;
+    const guide = this.currentGuide(); if (!guide) return;
     const snapshot = createWatchProgressSnapshot(guide.id,guide.version,this.watchedGuideTitleIds());
     const url = URL.createObjectURL(new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json'}));
     const link = document.createElement('a'); link.href = url; link.download = `${guide.id}-progress.json`; link.click(); URL.revokeObjectURL(url);
@@ -131,6 +137,19 @@ export class AppComponent implements OnInit {
   openTitle(title: TitleRecord): void { this.selectedTitle.set(title); document.body.classList.add('drawer-open'); }
   openTitleById(id:string): void { const title = this.titleFor(id); if (title) this.openTitle(title); }
   closeTitle(): void { this.selectedTitle.set(null); document.body.classList.remove('drawer-open'); }
+  openGuide(guide:WatchGuide): void {
+    this.closeTitle();
+    this.selectedGuide.set(guide);
+    this.restoreGuideProgress(guide);
+    document.body.classList.add('guide-open');
+    history.replaceState(null,'',`${location.pathname}${location.search}${watchGuideHash(guide.id)}`);
+  }
+  openGuideForTitle(titleId:string): void { const guide = this.guideForTitle(titleId); if (guide) this.openGuide(guide); }
+  closeGuide(): void {
+    this.selectedGuide.set(null);
+    document.body.classList.remove('guide-open');
+    if (watchGuideIdFromHash(location.hash)) history.replaceState(null,'',`${location.pathname}${location.search}`);
+  }
   clearFilter(filter: 'query'|'universe'|'saga'|'phase'|'format'|'order'): void {
     if (filter === 'query') this.query.set('');
     if (filter === 'universe') this.setUniverse('all');
@@ -153,14 +172,21 @@ export class AppComponent implements OnInit {
     const phaseId = this.phases().some(({id}) => id === state.phaseId) && phaseIds.has(state.phaseId) ? state.phaseId : 'all';
     this.query.set(state.query); this.selectedPhase.set(phaseId); this.selectedType.set(state.mediaType); this.sortMode.set(state.sortMode);
   }
+  private restoreGuideFromHash(): void {
+    const id = watchGuideIdFromHash(location.hash);
+    const guide = this.watchGuides().find((item) => item.id === id) ?? null;
+    this.selectedGuide.set(guide);
+    document.body.classList.toggle('guide-open',Boolean(guide));
+    if (guide) this.restoreGuideProgress(guide);
+  }
   private guideStorageKey(guideId:string): string { return `marvel-archive:watch-progress:v1:${guideId}`; }
-  private restoreGuideProgress(): void {
-    const guide = this.activeGuide(); if (!guide || !('localStorage' in globalThis)) return;
+  private restoreGuideProgress(guide = this.currentGuide()): void {
+    if (!guide || !('localStorage' in globalThis)) return;
     const ids = guide.sections.flatMap(({items}) => items.map(({titleId}) => titleId));
     try { this.watchedGuideTitleIds.set(parseWatchProgress(localStorage.getItem(this.guideStorageKey(guide.id)),guide.id,ids)); } catch { this.watchedGuideTitleIds.set(new Set()); }
   }
   private persistGuideProgress(): void {
-    const guide = this.activeGuide(); if (!guide || !('localStorage' in globalThis)) return;
+    const guide = this.currentGuide(); if (!guide || !('localStorage' in globalThis)) return;
     try { localStorage.setItem(this.guideStorageKey(guide.id),JSON.stringify(createWatchProgressSnapshot(guide.id,guide.version,this.watchedGuideTitleIds()))); } catch { /* The checklist remains usable for the current session. */ }
   }
 }
