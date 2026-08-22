@@ -1,15 +1,151 @@
 [
-  {"id":"marvel-movies","name":"Marvel Movies","url":"https://www.marvel.com/movies/","authority":"official","usedFor":["titles","release dates","official links"]},
-  {"id":"marvel-tv","name":"Marvel TV Shows","url":"https://www.marvel.com/tv-shows","authority":"official","usedFor":["series","season dates","official links"]},
-  {"id":"disney-plus","name":"Disney+","url":"https://www.disneyplus.com/brand/marvel","authority":"official","usedFor":["canonical streaming links","MCU timeline"]},
-  {"id":"imdb","name":"IMDb","url":"https://www.imdb.com/","authority":"reference","usedFor":["stable title identifiers"]},
-  {"id":"imdb-non-commercial","name":"IMDb Non-Commercial Datasets","url":"https://developer.imdb.com/non-commercial-datasets/","authority":"reference","usedFor":["direct title identifiers","credited character names","billing order"]},
-  {"id":"wikidata","name":"Wikidata","url":"https://www.wikidata.org/","authority":"community","usedFor":["Apple TV identifiers","Prime Video identifiers","Disney+ identifiers","cross-checking identifiers"]},
-  {"id":"google-maps-urls","name":"Google Maps URLs","url":"https://developers.google.com/maps/documentation/urls/get-started","authority":"official","usedFor":["keyless location-aware theater discovery"]},
-  {"id":"apple-search-api","name":"Apple Search API","url":"https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/","authority":"official","usedFor":["storefront-link feasibility"]},
-  {"id":"movieglu","name":"MovieGlu API","url":"https://developer.movieglu.com/","authority":"official","usedFor":["future licensed real-time showtimes integration"]},
-  {"id":"amazon-creators-api","name":"Amazon Creators API","url":"https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction","authority":"official","usedFor":["future authenticated affiliate product links"]},
-  {"id":"disney-plus-countdown","name":"Disney+ Countdown to Avengers: Doomsday collection","url":"https://www.disneyplus.com/","authority":"official","usedFor":["Doomsday studio watch-guide membership"]},
-  {"id":"gamesradar-doomsday-countdown","name":"Disney has released a list of essential Marvel movies to watch before Avengers: Doomsday","url":"https://www.gamesradar.com/entertainment/marvel-movies/disney-has-released-a-list-of-essential-marvel-movies-to-watch-before-avengers-doomsday-and-fans-are-debating-the-most-confusing-omissions/","authority":"reference","usedFor":["publicly accessible transcription of the Disney+ Countdown collection"]},
-  {"id":"marvel-doomsday","name":"Avengers: Doomsday","url":"https://www.marvel.com/movies/avengers-kang-dynasty","authority":"official","usedFor":["target release date","returning teams and characters"]}
+  {
+    "id": "marvel-movies",
+    "name": "Marvel Movies",
+    "url": "https://www.marvel.com/movies/",
+    "authority": "official",
+    "usedFor": [
+      "titles",
+      "release dates",
+      "official links"
+    ]
+  },
+  {
+    "id": "marvel-tv",
+    "name": "Marvel TV Shows",
+    "url": "https://www.marvel.com/tv-shows",
+    "authority": "official",
+    "usedFor": [
+      "series",
+      "season dates",
+      "official links"
+    ]
+  },
+  {
+    "id": "disney-plus",
+    "name": "Disney+",
+    "url": "https://www.disneyplus.com/brand/marvel",
+    "authority": "official",
+    "usedFor": [
+      "canonical streaming links",
+      "MCU timeline"
+    ]
+  },
+  {
+    "id": "imdb",
+    "name": "IMDb",
+    "url": "https://www.imdb.com/",
+    "authority": "reference",
+    "usedFor": [
+      "stable title identifiers"
+    ]
+  },
+  {
+    "id": "imdb-non-commercial",
+    "name": "IMDb Non-Commercial Datasets",
+    "url": "https://developer.imdb.com/non-commercial-datasets/",
+    "authority": "reference",
+    "usedFor": [
+      "direct title identifiers",
+      "credited character names",
+      "billing order"
+    ]
+  },
+  {
+    "id": "wikidata",
+    "name": "Wikidata",
+    "url": "https://www.wikidata.org/",
+    "authority": "community",
+    "usedFor": [
+      "Apple TV identifiers",
+      "Prime Video identifiers",
+      "Disney+ identifiers",
+      "cross-checking identifiers"
+    ]
+  },
+  {
+    "id": "google-maps-urls",
+    "name": "Google Maps URLs",
+    "url": "https://developers.google.com/maps/documentation/urls/get-started",
+    "authority": "official",
+    "usedFor": [
+      "keyless location-aware theater discovery"
+    ]
+  },
+  {
+    "id": "apple-search-api",
+    "name": "Apple Search API",
+    "url": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/",
+    "authority": "official",
+    "usedFor": [
+      "storefront-link feasibility"
+    ]
+  },
+  {
+    "id": "movieglu",
+    "name": "MovieGlu API",
+    "url": "https://developer.movieglu.com/",
+    "authority": "official",
+    "usedFor": [
+      "future licensed real-time showtimes integration"
+    ]
+  },
+  {
+    "id": "amazon-creators-api",
+    "name": "Amazon Creators API",
+    "url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
+    "authority": "official",
+    "usedFor": [
+      "future authenticated affiliate product links"
+    ]
+  },
+  {
+    "id": "disney-plus-countdown",
+    "name": "Disney+ Countdown to Avengers: Doomsday collection",
+    "url": "https://www.disneyplus.com/",
+    "authority": "official",
+    "usedFor": [
+      "Doomsday studio watch-guide membership"
+    ]
+  },
+  {
+    "id": "gamesradar-doomsday-countdown",
+    "name": "Disney has released a list of essential Marvel movies to watch before Avengers: Doomsday",
+    "url": "https://www.gamesradar.com/entertainment/marvel-movies/disney-has-released-a-list-of-essential-marvel-movies-to-watch-before-avengers-doomsday-and-fans-are-debating-the-most-confusing-omissions/",
+    "authority": "reference",
+    "usedFor": [
+      "publicly accessible transcription of the Disney+ Countdown collection"
+    ]
+  },
+  {
+    "id": "marvel-doomsday",
+    "name": "Avengers: Doomsday",
+    "url": "https://www.marvel.com/movies/avengers-kang-dynasty",
+    "authority": "official",
+    "usedFor": [
+      "target release date",
+      "returning teams and characters"
+    ]
+  },
+  {
+    "id": "ai-assisted-character-editorial",
+    "name": "AI-assisted character editorial profiles",
+    "url": "https://www.marvel.com/characters",
+    "authority": "editorial",
+    "usedFor": [
+      "plain-language character identity summaries",
+      "power and skill labels",
+      "affiliation and alignment labels"
+    ]
+  },
+  {
+    "id": "wikipedia-character-reference",
+    "name": "Wikipedia character references",
+    "url": "https://en.wikipedia.org/wiki/Category:Marvel_Comics_characters",
+    "authority": "community",
+    "usedFor": [
+      "linked character identity cross-checks",
+      "public character reference pages"
+    ]
+  }
 ]

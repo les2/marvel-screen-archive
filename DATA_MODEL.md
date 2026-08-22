@@ -28,6 +28,8 @@ Checks are stored only in the visitor’s browser as a versioned progress snapsh
 
 IMDb's public non-commercial title and principal-credit files provide stable title IDs, credited character names, and performer order. Curated identity groups merge established aliases such as Tony Stark/Iron Man and Logan/Wolverine; all other identities remain conservative screen-credit records. `comicOrigin` distinguishes confirmed identities from probable comic-derived characters, while `profileConfidence` and each appearance's `roleConfidence` prevent inferred classifications from being presented as editorial fact.
 
+Character identity copy and catalog statistics are deliberately separate. `description` explains who a researched character is; `powers`, `skills`, `affiliations`, `characterType`, `alignment`, and `powerStatus` hold searchable structured traits. `catalogSummary` is derived from title relations and contains appearance count, release-order endpoints, and highest recorded role. `profileStatus` is `researched` only when the identity and traits have received editorial work; otherwise the record is labeled `screen-credit-only` and its description states exactly what remains unverified.
+
 Role inference uses the credited performer's order: the first two performers are `lead`, the next three `major`, the next five `supporting`, and later named roles `minor`; uncredited or archival appearances are `cameo`. Secondary roles played by the same performer default to `minor`. Hand-verified core records override the inference.
 
 ## External links and showtimes
@@ -52,4 +54,4 @@ The catalog serializes non-default search state into stable query parameters: `q
 
 The character directory lives at `/characters` and uses its own non-colliding parameters: `characterQuery`, `characterUniverse`, `characterRole`, `characterOrigin`, and `characterOrder`. Both parameter sets can coexist in a copied URL. Filtering and sorting always cover the complete in-memory character set, while the interface reveals results in batches to avoid creating thousands of document nodes on first render.
 
-`editorialDescription` is display copy generated with AI assistance and is labeled by `descriptionSource: "ai-assisted"`. It does not replace factual provenance or the separately maintained `synopsis` field.
+`editorialDescription` and character `description` are display copy generated with AI assistance and labeled by their source fields. They do not replace factual provenance, derived catalog summaries, or the separately maintained title `synopsis` field.

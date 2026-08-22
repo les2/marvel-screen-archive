@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "ng serve --host 127.0.0.1",
     "build": "ngc -p tsconfig.app.json && node scripts/build-static.mjs && node scripts/prepare-sites-build.mjs",
-    "enrich:data": "node scripts/enrich-catalog-data.mjs",
+    "enrich:data": "node scripts/enrich-catalog-data.mjs && node scripts/apply-character-profiles.mjs",
+    "enrich:characters": "node scripts/apply-character-profiles.mjs",
     "test": "tsc -p tsconfig.spec.json --noEmit && vitest run",
     "test:watch": "vitest"
   },

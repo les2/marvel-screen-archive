@@ -29,7 +29,7 @@ export function filterAndSortCharacters(characters: Character[], titles: TitleRe
     if (state.role !== 'all' && character.primaryRole !== state.role) return false;
     if (state.comicOrigin !== 'all' && character.comicOrigin !== state.comicOrigin) return false;
     if (!query) return true;
-    const haystack = normalizeSearch([character.name,...character.aliases,character.description].filter(Boolean).join(' '));
+    const haystack = normalizeSearch([character.name,...character.aliases,character.description,...(character.powers ?? []),...(character.skills ?? []),...(character.affiliations ?? [])].filter(Boolean).join(' '));
     return query.split(' ').every((term) => haystack.includes(term));
   });
 

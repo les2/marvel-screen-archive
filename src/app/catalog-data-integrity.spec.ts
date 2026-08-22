@@ -80,9 +80,20 @@ describe('catalog data integrity', () => {
     for (const character of characters) {
       expect(character.descriptionSource).toBe('ai-assisted');
       expect(character.description?.length).toBeGreaterThan(70);
+      expect(character.catalogSummary?.length).toBeGreaterThan(40);
+      expect(character.description).not.toMatch(/appears in \d+ catalog titles?/i);
       expect(character.appearanceCount).toBe(appearanceCountByCharacter.get(character.id));
       expect(['confirmed','probable','screen-original','unclassified']).toContain(character.comicOrigin);
+      expect(['researched','screen-credit-only']).toContain(character.profileStatus);
+      expect(Array.isArray(character.powers)).toBe(true);
+      expect(Array.isArray(character.skills)).toBe(true);
+      expect(Array.isArray(character.affiliations)).toBe(true);
     }
+    expect(characters.filter(({profileStatus}) => profileStatus === 'researched').length).toBeGreaterThanOrEqual(125);
+    const aBomb = characters.find(({id}) => id === 'a-bomb');
+    expect(aBomb?.description).toContain('gamma-powered superhero identity of Rick Jones');
+    expect(aBomb?.catalogSummary).toContain('1 indexed appearance');
+    expect(aBomb?.powers).toEqual(expect.arrayContaining(['Superhuman strength','Camouflage']));
   });
 
   it('uses direct stable IDs when available and labels every fallback honestly', () => {

@@ -15,7 +15,7 @@ Marvel Archive is a public, browser-only screen chronology explorer and download
 - A distinct, clearly labeled AI-assisted editorial description for every catalog title
 - Ordered collections for trilogies, sagas, teams, and series
 - More than 1,400 character profiles and 2,300 classified appearances, with `lead`, `major`, `supporting`, `minor`, and `cameo` roles
-- AI-assisted character summaries, aliases, continuity membership, first/latest appearances, and clearly labeled inference confidence
+- Semantic “who is this?” character summaries plus searchable powers, skills, affiliations, alignment, power status, and clearly separated derived appearance summaries
 - Direct IMDb links for every title plus direct Apple TV and Disney+ destinations wherever stable public IDs exist
 - Honest search fallbacks where a provider—especially Amazon—does not expose a reusable public ID
 - Keyless, location-aware Google Maps theater discovery for announced films
@@ -40,7 +40,7 @@ The public repository runs both tests and the production build in GitHub Actions
 
 ## Data maintenance
 
-`scripts/expand-catalog.mjs` expands catalog-level coverage, generates labeled editorial descriptions, and derives release navigation. `scripts/enrich-catalog-data.mjs` consumes IMDb's `title.basics.tsv.gz` and `title.principals.tsv.gz`, resolves public Wikidata identifiers, expands characters, classifies appearances, and replaces search links with direct destinations when possible. `scripts/derive-entities.mjs` materializes relation files. See [DATA_MODEL.md](DATA_MODEL.md) for entity and versioning decisions.
+`scripts/expand-catalog.mjs` expands catalog-level coverage, generates labeled editorial descriptions, and derives release navigation. `scripts/enrich-catalog-data.mjs` consumes IMDb's `title.basics.tsv.gz` and `title.principals.tsv.gz`, resolves public Wikidata identifiers, expands characters, classifies appearances, and replaces search links with direct destinations when possible. `scripts/apply-character-profiles.mjs` then separates derived catalog summaries from semantic biographies and applies researched powers, skills, affiliations, and status labels. `scripts/derive-entities.mjs` materializes relation files. See [DATA_MODEL.md](DATA_MODEL.md) for entity and versioning decisions.
 
 To reproduce the enrichment, download IMDb's daily non-commercial files into `work/imdb`, then run `npm run enrich:data`. The large source files are intentionally excluded from the repository. IMDb-derived fields remain subject to IMDb's non-commercial dataset terms.
 
