@@ -19,12 +19,12 @@ export default {
     const isAppNavigation = (request.method === 'GET' || request.method === 'HEAD') && !url.pathname.split('/').pop()?.includes('.');
     let response;
     if (isAppNavigation) {
-      const fallback = new URL('/index.html', request.url);
+      const fallback = new URL('/', request.url);
       response = await env.ASSETS.fetch(new Request(fallback, request));
     } else {
       response = await env.ASSETS.fetch(request);
       if (response.status === 404 && request.method === 'GET') {
-        const fallback = new URL('/index.html', request.url);
+        const fallback = new URL('/', request.url);
         response = await env.ASSETS.fetch(new Request(fallback, request));
       }
     }
