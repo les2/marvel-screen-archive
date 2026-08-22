@@ -1,5 +1,7 @@
 # Marvel Archive
 
+[**Open the published Marvel Archive**](https://marvel-screen-archive.les2.chatgpt.site/)
+
 Marvel Archive is a public, browser-only screen chronology explorer and downloadable JSON dataset. It currently indexes 191 feature films, television series, specials, shorts, serials, and major animated releases across nine continuity groups.
 
 ## What it does
