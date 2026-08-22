@@ -3,12 +3,13 @@
     <div><span>Fresh timeline detected</span><strong>A newer archive is ready.</strong><p>Your private checklist progress is already safe on this device.</p></div>
     <div class="update-actions"><button type="button" (click)="applyAppUpdate()">Load update</button><button type="button" (click)="dismissAppUpdate()">Later</button></div>
   </aside>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
-    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#characters">Characters</a><a href="#data">Data files</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
+  <header class="site-header" [class.secondary-header]="isCharactersPage()">
+    <a class="brand" routerLink="/" fragment="top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
+    <nav class="header-nav" aria-label="Primary"><a routerLink="/" fragment="catalog">Catalog</a><a routerLink="/characters">Characters</a><a routerLink="/" fragment="data">Data files</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
   </header>
 
   <main id="top">
+    <ng-container *ngIf="!isCharactersPage()">
     <section class="hero" aria-labelledby="hero-title">
       <div class="eyebrow"><span>Screen chronology / Vol. 01</span><span>Updated Aug 21, 2026</span></div>
       <h1 id="hero-title">EVERY UNIVERSE.<br><em>ONE TIMELINE.</em></h1>
@@ -80,8 +81,13 @@
       </div>
     </section>
 
-    <section class="characters-section" id="characters" aria-labelledby="characters-title">
-      <div class="section-kicker"><span>02 / Character index</span><span>{{ filteredCharacters().length }} profiles</span></div>
+    <aside class="character-route-card" aria-label="Character directory">
+      <div><span>Character directory</span><strong>{{ characters().length }} profiles</strong></div><p>Search names and aliases, filter roles and continuities, and follow every indexed screen appearance.</p><a routerLink="/characters">Browse characters <span>→</span></a>
+    </aside>
+    </ng-container>
+
+    <section class="characters-section" id="characters" aria-labelledby="characters-title" *ngIf="isCharactersPage()">
+      <div class="section-kicker"><span>Character directory</span><span>{{ filteredCharacters().length }} profiles</span></div>
       <div class="characters-heading">
         <div><span class="character-overline">Across every continuity</span><h2 id="characters-title">WHO'S IN<br><em>THE ARCHIVE?</em></h2></div>
         <p>Search heroes, villains, civilian identities, and aliases. Expand any record to follow that character through every indexed screen appearance.</p>
@@ -123,8 +129,8 @@
       </div>
     </section>
 
-    <section class="data-section" id="data">
-      <div class="section-kicker light"><span>03 / Dataset files</span><span>JSON · IndexedDB · PWA</span></div>
+    <section class="data-section" id="data" *ngIf="!isCharactersPage()">
+      <div class="section-kicker light"><span>02 / Dataset files</span><span>JSON · IndexedDB · PWA</span></div>
       <div class="data-grid">
         <div><h2>DATASET<br><em>FILES.</em></h2></div>
         <div class="data-copy"><p>Download the versioned JSON used by the app. The manifest records the current dataset and schema versions.</p><a href="/data/metadata.json" target="_blank" rel="noopener">Open dataset manifest <span>↗</span></a></div>
@@ -135,6 +141,8 @@
 
   <footer><span>Marvel Archive / 2026</span><p>An independent reference project. Marvel names and marks belong to their respective owners.</p><a href="#top">Back to top ↑</a></footer>
 </div>
+
+<router-outlet class="route-marker"></router-outlet>
 
 <div class="drawer-backdrop" *ngIf="selectedTitle()" (click)="closeTitle()"></div>
 <aside class="drawer" [class.open]="selectedTitle()" [attr.aria-hidden]="!selectedTitle()" aria-label="Title details">

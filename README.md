@@ -6,7 +6,7 @@ Marvel Archive is a public, browser-only screen chronology explorer and download
 
 - Instant local search by title, character, alias, or editorial description
 - Shareable URL state for search, universe, saga, phase, format, and ordering
-- A top-level character directory spanning the full dataset, with expandable profiles, name/alias search, continuity, role and origin filters, useful sort orders, and progressively rendered results
+- A dedicated `/characters` route spanning the full dataset, with expandable profiles, name/alias search, continuity, role and origin filters, useful sort orders, and progressively rendered results
 - Shareable character-directory state that can coexist with catalog filters in the same URL
 - Context-aware universe, saga, and phase filters with unavailable branches disabled
 - Fast button controls for format and release-date, universe-timeline, or alphabetical order

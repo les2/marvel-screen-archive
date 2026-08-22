@@ -2,7 +2,7 @@
   "name": "marvel-archive",
   "version": "0.1.0",
   "private": false,
-  "description": "A fast, offline-first Marvel screen universe explorer and open JSON dataset.",
+  "description": "A fast, offline-first Marvel screen universe explorer and downloadable JSON dataset.",
   "type": "module",
   "engines": {
     "node": ">=22.22.3"

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import type { Character, Collection, ExternalLink, Phase, RoleType, Saga, StoryArc, TitleRecord, Universe, WatchGuide, WatchGuideItem } from './models';
 import { CatalogDataService } from './catalog-data.service';
 import { availablePhaseIds, availableSagaIds, compatiblePhaseSelection, filterAndSortTitles, type CatalogSortMode } from './catalog-query';
@@ -9,16 +11,18 @@ import { filterAndSortCharacters, type CharacterSortMode } from './character-que
 import { applyCharacterState, parseCharacterState } from './character-url-state';
 import { createWatchProgressSnapshot, parseWatchProgress, toggleWatchedTitle } from './watch-progress';
 import { watchGuideHash, watchGuideIdFromHash } from './watch-guide-navigation';
+import { pageFromUrl } from './app.routes';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterOutlet],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
   private readonly data = inject(CatalogDataService);
+  private readonly router = inject(Router);
   private installEvent: (Event & { prompt():Promise<void>; userChoice:Promise<{outcome:string}> }) | null = null;
   readonly titles = signal<TitleRecord[]>([]);
   readonly universes = signal<Universe[]>([]);
@@ -46,6 +50,8 @@ export class AppComponent implements OnInit {
   readonly loading = signal(true);
   readonly canInstall = signal(false);
   readonly updateReady = signal(false);
+  readonly currentPage = signal<'home'|'characters'>(pageFromUrl(location.pathname));
+  readonly isCharactersPage = computed(() => this.currentPage() === 'characters');
   private readonly urlReady = signal(false);
 
   readonly releasedCount = computed(() => this.titles().filter((title) => title.status === 'released').length);
@@ -84,6 +90,10 @@ export class AppComponent implements OnInit {
     const next = `${location.pathname}${search ? `?${search}` : ''}${location.hash}`;
     history.replaceState(null,'',next);
   });
+
+  constructor() {
+    this.router.events.pipe(filter((event):event is NavigationEnd => event instanceof NavigationEnd)).subscribe((event) => this.currentPage.set(pageFromUrl(event.urlAfterRedirects)));
+  }
 
   async ngOnInit(): Promise<void> {
     try {
