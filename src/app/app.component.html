@@ -5,7 +5,7 @@
   </aside>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
-    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#characters">Characters</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
+    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#characters">Characters</a><a href="#data">Data files</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
   </header>
 
   <main id="top">
@@ -13,7 +13,7 @@
       <div class="eyebrow"><span>Screen chronology / Vol. 01</span><span>Updated Aug 21, 2026</span></div>
       <h1 id="hero-title">EVERY UNIVERSE.<br><em>ONE TIMELINE.</em></h1>
       <div class="hero-bottom">
-        <p>Films, series, characters, continuities, and every scene after the credits—mapped into one fast, open archive.</p>
+        <p>Films, series, characters, continuities, and every scene after the credits—mapped into one fast archive.</p>
         <a class="hero-cta" href="#catalog">Enter the archive <span>↓</span></a>
       </div>
       <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-star star-one">✦</div><div class="hero-star star-two">✦</div>
@@ -124,12 +124,12 @@
     </section>
 
     <section class="data-section" id="data">
-      <div class="section-kicker light"><span>03 / Built in the open</span><span>JSON · IndexedDB · PWA</span></div>
+      <div class="section-kicker light"><span>03 / Dataset files</span><span>JSON · IndexedDB · PWA</span></div>
       <div class="data-grid">
-        <div><h2>The archive<br>belongs to <em>everyone.</em></h2></div>
-        <div class="data-copy"><p>No account. No server. No tracking. The catalog ships as versioned JSON, caches for offline use, and is shaped for contribution.</p><a href="/data/metadata.json" target="_blank">Inspect dataset manifest <span>↗</span></a></div>
+        <div><h2>DATASET<br><em>FILES.</em></h2></div>
+        <div class="data-copy"><p>Download the versioned JSON used by the app. The manifest records the current dataset and schema versions.</p><a href="/data/metadata.json" target="_blank" rel="noopener">Open dataset manifest <span>↗</span></a></div>
       </div>
-      <div class="schema-strip"><span>titles.json</span><span>characters.json</span><span>universes.json</span><span>sagas.json</span><span>phases.json</span><span>story-arcs.json</span><span>watch-guides.json</span></div>
+      <div class="schema-strip" aria-label="Dataset file downloads"><a href="/data/titles.json" target="_blank" rel="noopener">titles.json ↗</a><a href="/data/characters.json" target="_blank" rel="noopener">characters.json ↗</a><a href="/data/appearances.json" target="_blank" rel="noopener">appearances.json ↗</a><a href="/data/universes.json" target="_blank" rel="noopener">universes.json ↗</a><a href="/data/sagas.json" target="_blank" rel="noopener">sagas.json ↗</a><a href="/data/phases.json" target="_blank" rel="noopener">phases.json ↗</a><a href="/data/story-arcs.json" target="_blank" rel="noopener">story-arcs.json ↗</a><a href="/data/watch-guides.json" target="_blank" rel="noopener">watch-guides.json ↗</a></div>
     </section>
   </main>
 

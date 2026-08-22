@@ -1,6 +1,6 @@
 # Marvel Archive
 
-Marvel Archive is a public, browser-only screen chronology explorer and open JSON dataset. It currently indexes 191 feature films, television series, specials, shorts, serials, and major animated releases across nine continuity groups.
+Marvel Archive is a public, browser-only screen chronology explorer and downloadable JSON dataset. It currently indexes 191 feature films, television series, specials, shorts, serials, and major animated releases across nine continuity groups.
 
 ## What it does
 
