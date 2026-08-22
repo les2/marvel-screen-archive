@@ -18,6 +18,7 @@ Marvel Archive is a public, browser-only screen chronology explorer and open JSO
 - Honest search fallbacks where a provider—especially Amazon—does not expose a reusable public ID
 - Keyless, location-aware Google Maps theater discovery for announced films
 - PWA installability, Angular service-worker caching, and IndexedDB fallback
+- Automatic installed-PWA update checks on launch, hourly while open, and whenever the app returns to the foreground, with a safe in-app reload prompt
 - Versioned entity files and JSON Schemas under `public/data`
 
 The MCU hierarchy is modeled explicitly as **Saga → Phase → Title**. The Infinity Saga contains Phases One–Three; the current Multiverse Saga contains Phases Four–Six. *Avengers: Doomsday* is a Phase Six culmination title, not the name of the saga.
@@ -27,6 +28,7 @@ The MCU hierarchy is modeled explicitly as **Saga → Phase → Title**. The Inf
 Angular 22 standalone components, signals, strict TypeScript, Tailwind CSS 4, native IndexedDB, and an offline-first service worker. There is no application backend.
 
 Production builds run Angular's library linker before bundling, emit content-fingerprinted JavaScript and CSS, and use network-first navigation caching so a deployment cannot be shadowed by an obsolete application shell.
+Each complete release—including data-only changes—also receives a generated service-worker fingerprint and a fresh offline cache.
 
 ## Local development
 

@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   readonly selectedTitle = signal<TitleRecord | null>(null);
   readonly loading = signal(true);
   readonly canInstall = signal(false);
+  readonly updateReady = signal(false);
   private readonly urlReady = signal(false);
 
   readonly releasedCount = computed(() => this.titles().filter((title) => title.status === 'released').length);
@@ -80,7 +81,11 @@ export class AppComponent implements OnInit {
   handleInstallPrompt(event: Event): void { event.preventDefault(); this.installEvent = event as typeof this.installEvent; this.canInstall.set(true); }
   @HostListener('window:popstate')
   handlePopState(): void { this.restoreUrlState(); }
+  @HostListener('window:marvel-app-update-ready')
+  handleAppUpdateReady(): void { this.updateReady.set(true); }
   async install(): Promise<void> { if (!this.installEvent) return; await this.installEvent.prompt(); await this.installEvent.userChoice; this.installEvent = null; this.canInstall.set(false); }
+  applyAppUpdate(): void { location.reload(); }
+  dismissAppUpdate(): void { this.updateReady.set(false); }
 
   universeFor(title: TitleRecord): Universe | undefined { return this.universes().find((item) => item.id === title.universeIds[0]); }
   characterFor(id: string): Character | undefined { return this.characters().find((character) => character.id === id); }

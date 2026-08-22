@@ -1,4 +1,8 @@
 <div class="app-shell">
+  <aside class="update-notice" *ngIf="updateReady()" role="status" aria-live="polite">
+    <div><span>Fresh timeline detected</span><strong>A newer archive is ready.</strong><p>Your private checklist progress is already safe on this device.</p></div>
+    <div class="update-actions"><button type="button" (click)="applyAppUpdate()">Load update</button><button type="button" (click)="dismissAppUpdate()">Later</button></div>
+  </aside>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
     <nav class="header-nav" aria-label="Primary"><a href="#doomsday-protocol">Doomsday protocol</a><a href="#catalog">Catalog</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
