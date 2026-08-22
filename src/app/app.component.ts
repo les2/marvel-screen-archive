@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import type { Character, Collection, ExternalLink, Phase, Saga, StoryArc, TitleRecord, Universe, WatchGuide, WatchGuideItem } from './models';
+import type { Character, Collection, ExternalLink, Phase, RoleType, Saga, StoryArc, TitleRecord, Universe, WatchGuide, WatchGuideItem } from './models';
 import { CatalogDataService } from './catalog-data.service';
 import { availablePhaseIds, availableSagaIds, compatiblePhaseSelection, filterAndSortTitles, type CatalogSortMode } from './catalog-query';
 import { parseCatalogState, serializeCatalogState } from './catalog-url-state';
+import { filterAndSortCharacters, type CharacterSortMode } from './character-query';
+import { applyCharacterState, parseCharacterState } from './character-url-state';
 import { createWatchProgressSnapshot, parseWatchProgress, toggleWatchedTitle } from './watch-progress';
 import { watchGuideHash, watchGuideIdFromHash } from './watch-guide-navigation';
 
@@ -33,6 +35,12 @@ export class AppComponent implements OnInit {
   readonly selectedPhase = signal('all');
   readonly selectedType = signal('all');
   readonly sortMode = signal<CatalogSortMode>('release');
+  readonly characterQuery = signal('');
+  readonly selectedCharacterUniverse = signal('all');
+  readonly selectedCharacterRole = signal<RoleType | 'all'>('all');
+  readonly selectedCharacterOrigin = signal<NonNullable<Character['comicOrigin']> | 'all'>('all');
+  readonly characterSortMode = signal<CharacterSortMode>('appearances');
+  readonly visibleCharacterLimit = signal(60);
   readonly selectedTitle = signal<TitleRecord | null>(null);
   readonly selectedGuide = signal<WatchGuide | null>(null);
   readonly loading = signal(true);
@@ -53,6 +61,14 @@ export class AppComponent implements OnInit {
   readonly filteredTitles = computed(() => filterAndSortTitles(this.titles(), this.characters(), {
     query:this.query(), universeId:this.selectedUniverse(), sagaId:this.selectedSaga(), phaseId:this.selectedPhase(), mediaType:this.selectedType(), sortMode:this.sortMode()
   }));
+  readonly availableCharacterUniverses = computed(() => {
+    const ids = new Set(this.characters().flatMap(({universeIds}) => universeIds ?? []));
+    return this.universes().filter(({id}) => ids.has(id));
+  });
+  readonly selectedCharacterUniverseInfo = computed(() => this.universes().find(({id}) => id === this.selectedCharacterUniverse()));
+  readonly hasCharacterFilters = computed(() => Boolean(this.characterQuery()) || this.selectedCharacterUniverse() !== 'all' || this.selectedCharacterRole() !== 'all' || this.selectedCharacterOrigin() !== 'all' || this.characterSortMode() !== 'appearances');
+  readonly filteredCharacters = computed(() => filterAndSortCharacters(this.characters(),this.titles(),this.currentCharacterState()));
+  readonly visibleCharacters = computed(() => this.filteredCharacters().slice(0,this.visibleCharacterLimit()));
   readonly activeGuide = computed(() => this.watchGuides().find(({status}) => status === 'featured') ?? this.watchGuides()[0]);
   readonly currentGuide = computed(() => this.selectedGuide() ?? this.activeGuide());
   readonly guideItems = computed(() => this.currentGuide()?.sections.flatMap(({items}) => items) ?? []);
@@ -63,7 +79,8 @@ export class AppComponent implements OnInit {
   readonly guideProgressPercent = computed(() => this.guideItems().length ? Math.round(this.guideWatchedCount() / this.guideItems().length * 100) : 0);
   private readonly syncUrl = effect(() => {
     if (!this.urlReady()) return;
-    const search = serializeCatalogState(this.currentQueryState());
+    const params = applyCharacterState(new URLSearchParams(serializeCatalogState(this.currentQueryState())),this.currentCharacterState());
+    const search = params.toString();
     const next = `${location.pathname}${search ? `?${search}` : ''}${location.hash}`;
     history.replaceState(null,'',next);
   });
@@ -134,6 +151,19 @@ export class AppComponent implements OnInit {
   setUniverse(value: string): void { this.selectedUniverse.set(value); if (this.selectedSaga() !== 'all' && !this.sagaAvailable(this.selectedSaga())) this.selectedSaga.set('all'); if (this.selectedPhase() !== 'all' && !this.phaseAvailable(this.selectedPhase())) this.selectedPhase.set('all'); }
   setSaga(value: string): void { this.selectedSaga.set(value); const compatible = compatiblePhaseSelection(this.phases(),this.selectedPhase(),value); this.selectedPhase.set(compatible !== 'all' && this.phaseAvailable(compatible) ? compatible : 'all'); }
   setPhase(value: string): void { if (value === 'all' || this.phaseAvailable(value)) this.selectedPhase.set(value); }
+  setCharacterQuery(value:string):void { this.characterQuery.set(value); this.resetCharacterWindow(); }
+  setCharacterUniverse(value:string):void { this.selectedCharacterUniverse.set(value); this.resetCharacterWindow(); }
+  setCharacterRole(value:string):void { this.selectedCharacterRole.set(value as RoleType | 'all'); this.resetCharacterWindow(); }
+  setCharacterOrigin(value:string):void { this.selectedCharacterOrigin.set(value as NonNullable<Character['comicOrigin']> | 'all'); this.resetCharacterWindow(); }
+  setCharacterSort(value:string):void { this.characterSortMode.set(value as CharacterSortMode); this.resetCharacterWindow(); }
+  clearCharacterFilters():void {
+    this.characterQuery.set(''); this.selectedCharacterUniverse.set('all'); this.selectedCharacterRole.set('all'); this.selectedCharacterOrigin.set('all'); this.characterSortMode.set('appearances'); this.resetCharacterWindow();
+  }
+  loadMoreCharacters():void { this.visibleCharacterLimit.update((limit) => limit + 60); }
+  characterUniverseNames(character:Character):string { return (character.universeIds ?? []).map((id) => this.universes().find((item) => item.id === id)?.shortName ?? id).join(' · '); }
+  characterAppearances(character:Character):Array<{title:TitleRecord;role:RoleType}> {
+    return this.titles().flatMap((title) => title.appearances.filter(({characterId}) => characterId === character.id).map(({role}) => ({title,role}))).sort((a,b) => a.title.releaseOrder - b.title.releaseOrder);
+  }
   openTitle(title: TitleRecord): void { this.selectedTitle.set(title); document.body.classList.add('drawer-open'); }
   openTitleById(id:string): void { const title = this.titleFor(id); if (title) this.openTitle(title); }
   closeTitle(): void { this.selectedTitle.set(null); document.body.classList.remove('drawer-open'); }
@@ -161,6 +191,8 @@ export class AppComponent implements OnInit {
   clearFilters(): void { this.query.set(''); this.selectedUniverse.set('all'); this.selectedSaga.set('all'); this.selectedPhase.set('all'); this.selectedType.set('all'); this.sortMode.set('release'); }
   formatDate(date: string): string { return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
   private currentQueryState() { return {query:this.query(),universeId:this.selectedUniverse(),sagaId:this.selectedSaga(),phaseId:this.selectedPhase(),mediaType:this.selectedType(),sortMode:this.sortMode()}; }
+  private currentCharacterState() { return {query:this.characterQuery(),universeId:this.selectedCharacterUniverse(),role:this.selectedCharacterRole(),comicOrigin:this.selectedCharacterOrigin(),sortMode:this.characterSortMode()}; }
+  private resetCharacterWindow():void { this.visibleCharacterLimit.set(60); }
   private restoreUrlState(): void {
     const state = parseCatalogState(location.search);
     const universeId = this.universes().some(({id}) => id === state.universeId) ? state.universeId : 'all';
@@ -171,6 +203,11 @@ export class AppComponent implements OnInit {
     const phaseIds = availablePhaseIds(this.titles(),universeId,sagaId);
     const phaseId = this.phases().some(({id}) => id === state.phaseId) && phaseIds.has(state.phaseId) ? state.phaseId : 'all';
     this.query.set(state.query); this.selectedPhase.set(phaseId); this.selectedType.set(state.mediaType); this.sortMode.set(state.sortMode);
+    const characterState = parseCharacterState(location.search);
+    this.characterQuery.set(characterState.query);
+    this.selectedCharacterUniverse.set(this.universes().some(({id}) => id === characterState.universeId) ? characterState.universeId : 'all');
+    this.selectedCharacterRole.set(characterState.role); this.selectedCharacterOrigin.set(characterState.comicOrigin); this.characterSortMode.set(characterState.sortMode);
+    this.resetCharacterWindow();
   }
   private restoreGuideFromHash(): void {
     const id = watchGuideIdFromHash(location.hash);

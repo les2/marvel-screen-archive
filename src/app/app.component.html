@@ -5,7 +5,7 @@
   </aside>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Marvel Archive home"><span class="brand-mark">M</span><span>Marvel Archive</span></a>
-    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
+    <nav class="header-nav" aria-label="Primary"><a href="#catalog">Catalog</a><a href="#characters">Characters</a><a href="#data">Open data</a><button class="install-link" *ngIf="canInstall()" (click)="install()">Install app</button><span class="status-dot"><i></i> Offline ready</span></nav>
   </header>
 
   <main id="top">
@@ -80,8 +80,51 @@
       </div>
     </section>
 
+    <section class="characters-section" id="characters" aria-labelledby="characters-title">
+      <div class="section-kicker"><span>02 / Character index</span><span>{{ filteredCharacters().length }} profiles</span></div>
+      <div class="characters-heading">
+        <div><span class="character-overline">Across every continuity</span><h2 id="characters-title">WHO'S IN<br><em>THE ARCHIVE?</em></h2></div>
+        <p>Search heroes, villains, civilian identities, and aliases. Expand any record to follow that character through every indexed screen appearance.</p>
+      </div>
+
+      <div class="character-search-panel">
+        <label class="character-search-box"><span class="search-icon">⌕</span><span class="sr-only">Search characters</span><input type="search" [ngModel]="characterQuery()" (ngModelChange)="setCharacterQuery($event)" placeholder="Search name, alias, or profile…" autocomplete="off"><small>{{ filteredCharacters().length }} found</small></label>
+        <div class="character-selects">
+          <label><span>Universe</span><select [ngModel]="selectedCharacterUniverse()" (ngModelChange)="setCharacterUniverse($event)"><option value="all">All universes</option><option *ngFor="let universe of availableCharacterUniverses()" [value]="universe.id">{{ universe.shortName }}</option></select></label>
+          <label><span>Comic origin</span><select [ngModel]="selectedCharacterOrigin()" (ngModelChange)="setCharacterOrigin($event)"><option value="all">Every origin</option><option value="confirmed">Confirmed comic character</option><option value="probable">Probable comic character</option><option value="screen-original">Screen-original</option><option value="unclassified">Unclassified</option></select></label>
+        </div>
+        <div class="character-control-row">
+          <fieldset class="segmented-control character-role-control"><legend>Role</legend><button type="button" *ngFor="let option of [{id:'all',label:'All'},{id:'lead',label:'Lead'},{id:'major',label:'Major'},{id:'supporting',label:'Supporting'},{id:'minor',label:'Minor'},{id:'cameo',label:'Cameo'}]" [class.active]="selectedCharacterRole() === option.id" [attr.aria-pressed]="selectedCharacterRole() === option.id" (click)="setCharacterRole(option.id)">{{ option.label }}</button></fieldset>
+          <fieldset class="segmented-control character-order-control"><legend>Sort</legend><button type="button" *ngFor="let option of [{id:'appearances',label:'Most seen'},{id:'name',label:'A–Z'},{id:'first-appearance',label:'First seen'},{id:'recent-appearance',label:'Latest'}]" [class.active]="characterSortMode() === option.id" [attr.aria-pressed]="characterSortMode() === option.id" (click)="setCharacterSort(option.id)">{{ option.label }}</button></fieldset>
+        </div>
+        <div class="active-filters character-active-filters" *ngIf="hasCharacterFilters()"><span>Active</span><button *ngIf="characterQuery()" (click)="setCharacterQuery('')">Search: {{ characterQuery() }} ×</button><button *ngIf="selectedCharacterUniverseInfo() as universe" (click)="setCharacterUniverse('all')">{{ universe.shortName }} ×</button><button *ngIf="selectedCharacterRole() !== 'all'" (click)="setCharacterRole('all')">{{ selectedCharacterRole() }} roles ×</button><button *ngIf="selectedCharacterOrigin() !== 'all'" (click)="setCharacterOrigin('all')">{{ selectedCharacterOrigin() }} origin ×</button><button *ngIf="characterSortMode() !== 'appearances'" (click)="setCharacterSort('appearances')">{{ characterSortMode() }} order ×</button><button class="clear-all" (click)="clearCharacterFilters()">Clear all</button></div>
+      </div>
+
+      <div class="empty character-empty" *ngIf="!loading() && filteredCharacters().length === 0"><span>NO MATCH</span><p>No character profiles fit those filters.</p><button (click)="clearCharacterFilters()">Reset character filters</button></div>
+
+      <div class="character-directory" *ngIf="!loading() && filteredCharacters().length">
+        <div class="character-directory-labels" aria-hidden="true"><span>No. / Character</span><span>Continuity</span><span>Role</span><span>Appearances</span><span></span></div>
+        <details class="character-directory-entry" *ngFor="let character of visibleCharacters(); let index = index">
+          <summary>
+            <span class="character-directory-index">{{ (index + 1).toString().padStart(3,'0') }}</span>
+            <div class="character-directory-name"><strong>{{ character.name }}</strong><small>{{ character.aliases.slice(0,3).join(' · ') || 'No recorded aliases' }}</small></div>
+            <span class="character-directory-universe">{{ characterUniverseNames(character) || 'Unclassified' }}</span>
+            <span class="character-directory-role">{{ character.primaryRole || 'unclassified' }}</span>
+            <strong class="character-directory-count">{{ character.appearanceCount || characterAppearances(character).length }}</strong>
+            <i aria-hidden="true"></i>
+          </summary>
+          <div class="character-directory-body">
+            <div class="character-profile-copy"><span>{{ character.descriptionSource === 'ai-assisted' ? 'AI-assisted profile' : 'Character profile' }}</span><p>{{ character.description || 'This character is indexed from public screen-credit data; an editorial profile is still in progress.' }}</p><div class="character-links" *ngIf="character.officialUrl || character.wikipediaUrl"><a *ngIf="character.officialUrl" [href]="character.officialUrl" target="_blank" rel="noopener">Marvel profile ↗</a><a *ngIf="character.wikipediaUrl" [href]="character.wikipediaUrl" target="_blank" rel="noopener">Wikipedia ↗</a></div></div>
+            <div class="character-directory-facts"><div><span>First indexed</span><button type="button" *ngIf="titleFor(character.firstAppearanceId || '') as title" (click)="openTitle(title)">{{ title.title }} ↗</button><strong *ngIf="!character.firstAppearanceId">—</strong></div><div><span>Latest indexed</span><button type="button" *ngIf="titleFor(character.latestAppearanceId || '') as title" (click)="openTitle(title)">{{ title.title }} ↗</button><strong *ngIf="!character.latestAppearanceId">—</strong></div><div><span>Origin confidence</span><strong>{{ character.comicOrigin || 'unclassified' }} · {{ character.profileConfidence || 'unclassified' }}</strong></div></div>
+            <div class="character-filmography"><div><span>Screen appearances</span><small>Release order</small></div><ul><li *ngFor="let appearance of characterAppearances(character)"><button type="button" (click)="openTitle(appearance.title)"><span>{{ appearance.title.releaseDate.slice(0,4) }} · {{ appearance.role }}</span><strong>{{ appearance.title.title }}</strong></button></li></ul></div>
+          </div>
+        </details>
+        <div class="character-directory-footer"><span>Showing {{ visibleCharacters().length }} of {{ filteredCharacters().length }}</span><button type="button" *ngIf="visibleCharacters().length < filteredCharacters().length" (click)="loadMoreCharacters()">Load 60 more ↓</button><span *ngIf="visibleCharacters().length >= filteredCharacters().length">End of index</span></div>
+      </div>
+    </section>
+
     <section class="data-section" id="data">
-      <div class="section-kicker light"><span>02 / Built in the open</span><span>JSON · IndexedDB · PWA</span></div>
+      <div class="section-kicker light"><span>03 / Built in the open</span><span>JSON · IndexedDB · PWA</span></div>
       <div class="data-grid">
         <div><h2>The archive<br>belongs to <em>everyone.</em></h2></div>
         <div class="data-copy"><p>No account. No server. No tracking. The catalog ships as versioned JSON, caches for offline use, and is shaped for contribution.</p><a href="/data/metadata.json" target="_blank">Inspect dataset manifest <span>↗</span></a></div>

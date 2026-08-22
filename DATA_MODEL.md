@@ -50,4 +50,6 @@ Records marked `verified-core` contain editorially checked detail. `catalog` rec
 
 The catalog serializes non-default search state into stable query parameters: `q`, `universe`, `saga`, `phase`, `format`, and `order`. Saga availability is derived from titles in the selected universe; phase availability is derived from both universe and saga. Invalid or incompatible URL values safely fall back to `all`, which keeps copied links durable as the dataset evolves.
 
+The character directory uses its own non-colliding parameters: `characterQuery`, `characterUniverse`, `characterRole`, `characterOrigin`, and `characterOrder`. Both sets can coexist in a copied URL. Filtering and sorting always cover the complete in-memory character set, while the interface reveals results in batches to avoid creating thousands of document nodes on first render.
+
 `editorialDescription` is display copy generated with AI assistance and is labeled by `descriptionSource: "ai-assisted"`. It does not replace factual provenance or the separately maintained `synopsis` field.
